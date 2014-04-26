@@ -3,7 +3,15 @@
 	Rights::t('core', 'Assignments')=>array('assignment/view'),
 	$model->getName(),
 ); ?>
+<style>
+.row-fluid [class*="span"]{
+	margin-left:0px;
+}
+div.page-container div.page-content div.form {
+	border: 0 none;
 
+}
+</style>
 <div id="userAssignments">
 
 	<h2><?php echo Rights::t('core', 'Assignments for :username', array(

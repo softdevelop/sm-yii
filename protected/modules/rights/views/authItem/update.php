@@ -19,11 +19,11 @@
 
 		<?php if( $model->name!==Rights::module()->superuserName ): ?>
 
-			<div class="parents">
+			<!--div class="parents">
 
-				<h4><?php echo Rights::t('core', 'Parents'); ?></h4>
+				<h4><?php //echo Rights::t('core', 'Parents'); ?></h4>
 
-				<?php $this->widget('zii.widgets.grid.CGridView', array(
+				<?php /*$this->widget('zii.widgets.grid.CGridView', array(
 					'dataProvider'=>$parentDataProvider,
 					'template'=>'{items}',
 					'hideHeader'=>true,
@@ -51,13 +51,13 @@
     						'value'=>'',
     					),
 					)
-				)); ?>
+				)); */?>
 
-			</div>
+			</div-->
 
 			<div class="children">
 
-				<h4><?php echo Rights::t('core', 'Children'); ?></h4>
+				<h4><?php echo Rights::t('core', 'Add Roles'); ?></h4>
 
 				<?php $this->widget('zii.widgets.grid.CGridView', array(
 					'dataProvider'=>$childDataProvider,
@@ -73,13 +73,13 @@
     						'htmlOptions'=>array('class'=>'name-column'),
     						'value'=>'$data->getNameLink()',
     					),
-    					array(
+    					/*array(
     						'name'=>'type',
     						'header'=>Rights::t('core', 'Type'),
     						'type'=>'raw',
     						'htmlOptions'=>array('class'=>'type-column'),
     						'value'=>'$data->getTypeText()',
-    					),
+    					),*/
     					array(
     						'header'=>'&nbsp;',
     						'type'=>'raw',
@@ -91,9 +91,9 @@
 
 			</div>
 
-			<div class="addChild">
+			<div class="addChild" style="clear:both;">
 
-				<h5><?php echo Rights::t('core', 'Add Child'); ?></h5>
+				<h5><?php //echo Rights::t('core', 'Add Child'); ?></h5>
 
 				<?php if( $childFormModel!==null ): ?>
 

@@ -22,8 +22,10 @@ class AuthItemController extends RController
 	*/
 	public function init()
 	{
+		Yii::app()->theme = 'backend';
 		$this->_authorizer = $this->module->getAuthorizer();
-		$this->layout = $this->module->layout;
+		//$this->layout = $this->module->layout;
+		$this->layout = '//layouts/main';
 		$this->defaultAction = 'permissions';
 
 		// Register the scripts
@@ -332,9 +334,15 @@ class AuthItemController extends RController
 		}
 		
 		$type = Rights::getValidChildTypes($model->type);
-		$exclude = array($this->module->superuserName);
-		$childSelectOptions = Rights::getParentAuthItemSelectOptions($model, $type, $exclude);
+		//dump( $type);exit;
 		
+		$exclude = array($this->module->superuserName);
+		$childSelectOptionsbuf = Rights::getParentAuthItemSelectOptions($model, $type, $exclude);
+		//dump($childSelectOptionsbuf['Operations'],6,true);exit;
+		$childSelectOptions = array(
+			'Roles' => $childSelectOptionsbuf['Operations']
+		);
+		//dump($childSelectOptions ,6,true);exit;
 		if( $childSelectOptions!==array() )
 		{
 			$childFormModel = new AuthChildForm();

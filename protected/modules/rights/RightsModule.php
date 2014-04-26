@@ -73,7 +73,8 @@ class RightsModule extends CWebModule
 	/**
 	* @property string the path to the layout file to use for displaying Rights.
 	*/
-	public $layout = 'rights.views.layouts.main';
+	//public $layout = 'rights.views.layouts.main';
+	public $layout = '//layouts/main';
 	/**
 	* @property string the path to the application layout file.
 	*/
@@ -94,6 +95,7 @@ class RightsModule extends CWebModule
 	*/
 	public function init()
 	{
+		//Yii::app()->theme = 'frontend';
 		// Set required classes for import.
 		$this->setImport(array(
 			'rights.components.*',

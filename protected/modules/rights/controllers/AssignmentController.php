@@ -18,10 +18,10 @@ class AssignmentController extends RController
 	*/
 	public function init()
 	{
-		//Yii::app()->theme = 'backend';
+		Yii::app()->theme = 'backend';
 		$this->_authorizer = $this->module->getAuthorizer();
-		$this->layout = $this->module->layout;
-		//$this->layout = '//layouts/main';
+		//$this->layout = $this->module->layout;
+		$this->layout = '//layouts/main';
 		$this->defaultAction = 'view';
 
 		// Register the scripts

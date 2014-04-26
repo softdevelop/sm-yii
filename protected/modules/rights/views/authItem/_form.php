@@ -1,3 +1,12 @@
+<style>
+.row-fluid [class*="span"]{
+	margin-left:0px;
+}
+div.page-container div.page-content div.form {
+	border: 0 none;
+
+}
+</style>
 <div class="form span-12 first">
 
 <?php if( $model->scenario==='update' ): ?>
@@ -45,7 +54,7 @@
 	<?php endif; ?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton(Rights::t('core', 'Save')); ?> | <?php echo CHtml::link(Rights::t('core', 'Cancel'), Yii::app()->user->rightsReturnUrl); ?>
+		<?php echo CHtml::submitButton(Rights::t('core', 'Save')); ?>  <?php //echo CHtml::link(Rights::t('core', 'Cancel'), Yii::app()->user->rightsReturnUrl); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -13,7 +13,7 @@ class ProfileController extends BController
 	 * Shows a particular model.
 	 */
 	public function actionProfile()
-	{
+	{	
 		$model = $this->loadUser();
 	    $this->render('profile',array(
 	    	'model'=>$model,
