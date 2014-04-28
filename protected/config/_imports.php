@@ -1,5 +1,6 @@
 <?php
 return array(
+	
     'application.models.*',
     'application.components.*',
     'application.extensions.*',
@@ -29,5 +30,10 @@ return array(
 	'application.modules.projects.models.*', 
 	'application.modules.projects.components.*',
 	
-	'editable.*' //easy include of editable classes
+	'editable.*', //easy include of editable classes
+	
+	// include bootstrap
+	'bootstrap.helpers.TbHtml',
+	'bootstrap.helpers.TbArray'
+	
 );

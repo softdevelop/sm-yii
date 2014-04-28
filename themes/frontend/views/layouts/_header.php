@@ -1,10 +1,10 @@
 <div id="header">
 	<div class="container">
-		<div class="wrapper">
+		<div class="wrapper wrapperlr" >
 			<ul id="menu" class="full">
 				<li class="submenu">
 					<a> Menu </a>
-					<ul>
+					<ul class="wrapperlr" >
 						<li class="<?php if ((Yii::app()->controller->action->id == 'index') && (Yii::app()->controller->id == 'site')) echo 'current-menu-item';?>">
 							<a href="<?php echo Yii::app()->createUrl('/site/index');?>">Home</a>
 						</li>
@@ -31,8 +31,8 @@
 						<li class="<?php if (Yii::app()->controller->action->id == 'about') echo 'current-menu-item';?>">
 							<a href="<?php echo Yii::app()->createUrl('/about');?>">About</a>
 						</li>
-						<li class="<?php if (Yii::app()->controller->action->id == 'contact') echo 'current-menu-item';?>">
-							<a href="<?php echo Yii::app()->createUrl('/contact');?>"> Contact</a>
+						<li class="">
+							<a href="javascript:void(0);" id="changeTemplate" check="left">LTR</a>
 						</li>
 					</ul>
 				</li>
@@ -41,7 +41,7 @@
 			<!-- LOGO -->
 
 			<div id="logo">
-				<a href="index.html">
+				<a href="index.html" style="color:black;">
 					<img src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/images/logo.png" alt="" width="43" height="30"/>
 					<span><b>SoftDevelop /</b> Web Architects</span>
 				</a>

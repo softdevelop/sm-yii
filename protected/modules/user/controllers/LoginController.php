@@ -18,6 +18,7 @@ class LoginController extends BController
 				$model->attributes=$_POST['UserLogin'];
 				// validate user input and redirect to previous page if valid
 				if($model->validate()) {
+					//echo 'dd';exit;
 					$this->lastViset();
 					$this->redirect(Yii::app()->controller->module->returnUrl[0]);
 					/*

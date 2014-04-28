@@ -14,7 +14,9 @@ return array(
 	'sourceLanguage'=>'en',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'SDCMS',
-
+	'aliases' => array(
+        'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+    ),
 	// preloading 'log' component
 	'preload'=>array(
 		'log',

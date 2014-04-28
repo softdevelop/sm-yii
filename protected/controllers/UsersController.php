@@ -35,13 +35,7 @@ class UsersController extends FController
 				// validate user input and redirect to previous page if valid
 				if($model->validate()) {
 					$this->lastViset();
-					$this->redirect(Yii::app()->controller->module->returnUrl[0]);
-					/*
-					if (Yii::app()->user->returnUrl=='/index.php')
-						$this->redirect(Yii::app()->controller->module->returnUrl);
-					else
-						$this->redirect(Yii::app()->user->returnUrl);
-					*/
+					$this->redirect('/');
 				}
 			}
 			// display the login form
@@ -101,5 +95,10 @@ class UsersController extends FController
 	    	else
 	        	$this->render('error', $error);
 	    }
+	}
+	private function lastViset() {
+		$lastVisit = User::model()->notsafe()->findByPk(Yii::app()->user->id);
+		$lastVisit->lastvisit = time();
+		$lastVisit->save();
 	}
 }

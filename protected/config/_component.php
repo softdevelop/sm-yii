@@ -109,8 +109,11 @@
                'emptytext' => 'Click to edit'
             )
         ),
-		'bootstrap'=>array(
+		/*'bootstrap'=>array(
             'class'=>'bootstrap.components.Bootstrap',
+        ),*/
+		'bootstrap' => array(
+            'class' => 'bootstrap.components.TbApi',   
         ),
 	)
 ?>
