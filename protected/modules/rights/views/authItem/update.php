@@ -4,18 +4,18 @@
 	$model->name,
 ); ?>
 
-<div id="updatedAuthItem">
+<div id="updatedAuthItem ">
+    <div class="span-5" style="width: 50%; float: left">
+        <h2><?php echo Rights::t('core', 'Update :name', array(
+            ':name'=>$model->name,
+            ':type'=>Rights::getAuthItemTypeName($model->type),
+        )); ?></h2>
 
-	<h2><?php echo Rights::t('core', 'Update :name', array(
-		':name'=>$model->name,
-		':type'=>Rights::getAuthItemTypeName($model->type),
-	)); ?></h2>
+        <?php $this->renderPartial('_form', array('model'=>$formModel)); ?>
+    </div>
+	<div class="relations span-7 last " style="width: 50%;>
 
-	<?php $this->renderPartial('_form', array('model'=>$formModel)); ?>
-
-	<div class="relations span-11 last">
-
-		<h3><?php echo Rights::t('core', 'Relations'); ?></h3>
+		<!--h3><?php //echo Rights::t('core', 'Relations'); ?></h3-->
 
 		<?php if( $model->name!==Rights::module()->superuserName ): ?>
 
@@ -99,7 +99,7 @@
 
 					<?php $this->renderPartial('_childForm', array(
 						'model'=>$childFormModel,
-						'itemnameSelectOptions'=>$childSelectOptions,
+						'itemnameSelectOptions'=>$childSelectOptions[Roles],
 					)); ?>
 
 				<?php else: ?>

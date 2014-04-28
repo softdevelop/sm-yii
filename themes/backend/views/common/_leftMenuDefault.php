@@ -101,9 +101,9 @@
 			<li >
 				<a href="<?php echo Yii::app()->createUrl('/rights/authItem/roles'); ?>"><?php echo Yii::t('strings','Group');?></a>
 			</li>
-			<li >
+			<!--li >
 				<a href="<?php echo Yii::app()->createUrl('/rights/authItem/tasks'); ?>"><?php echo Yii::t('strings','Tasks');?></a>
-			</li>
+			</li-->
 			<li >
 				<a href="<?php echo Yii::app()->createUrl('/rights/authItem/operations'); ?>"><?php echo Yii::t('strings','Roles');?></a>
 			</li>

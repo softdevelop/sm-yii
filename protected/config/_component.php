@@ -53,7 +53,6 @@
 				), 
 		    ),
 		),
-		
 		'assetManager' => array(
 			'basePath' => dirname(__FILE__) . "/../../wwwroot/assets/",
 			'baseUrl' => "/../../wwwroot/assets",

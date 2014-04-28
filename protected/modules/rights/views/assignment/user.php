@@ -62,7 +62,7 @@ div.page-container div.page-content div.form {
 
 				<?php $this->renderPartial('_form', array(
 					'model'=>$formModel,
-					'itemnameSelectOptions'=>$assignSelectOptions,
+					'itemnameSelectOptions'=>$assignSelectOptions[Operations],
 				)); ?>
 
 			</div>

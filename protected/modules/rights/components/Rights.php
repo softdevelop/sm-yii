@@ -192,8 +192,12 @@ class Rights
 		// We have multiple types, nest the items under their types
        	if( $type!==(int)$type )
        	{
+
        		foreach( $items as $itemName=>$item )
-				$selectOptions[ self::getAuthItemTypeNamePlural($item->type) ][ $itemName ] = $item->getNameText();
+                if($item->type==0)
+                {
+				    $selectOptions[ self::getAuthItemTypeNamePlural($item->type) ][ $itemName ] = $item->getNameText();
+                }
 		}
 		// We have only one type
 		else
