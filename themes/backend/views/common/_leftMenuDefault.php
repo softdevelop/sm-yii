@@ -40,7 +40,7 @@
 					</li>
 				</ul>
 			</li>
-			<li >
+			<!--li >
 				<a href="<?php echo Yii::app()->createUrl('/user/admin/admin/memberType/Business');?>">
 				<?php echo Yii::t('strings','Business') ?><span class="arrow"></span></a>
 				<ul class="sub-menu">
@@ -81,7 +81,7 @@
 						<?php echo Yii::t('strings','Create Agent') ?></a>
 					</li>
 				</ul>
-			</li>
+			</li-->
 		</ul>
 	</li>
 	<li class="<?php if($this->module->getName()=="rights") echo "open";?>">
@@ -109,7 +109,7 @@
 			</li>
 		</ul>
 	</li>
-	<li class="<?php if($this->module->getName()=="banners") echo "open";?>">
+	<!--li class="<?php if($this->module->getName()=="banners") echo "open";?>">
 		<a href="javascript:;">
 		<i class="icon-table"></i> 
 		<span class="title"><?php echo Yii::t('strings','Banners') ?></span>
@@ -428,6 +428,6 @@
 				<a href="<?php echo Yii::app()->createUrl('/contacts/manageContacts/admin'); ?>"><?php echo Yii::t('strings','List contacts');?></a>
 			</li>
 		</ul>
-	</li>
+	</li-->
 </ul>
 <!-- END SIDEBAR MENU -->
