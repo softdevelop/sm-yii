@@ -2,7 +2,7 @@
 
 class UsersController extends FController
 {
-	public $layout='//layouts/main';
+	public $layout='//layouts/_login';
 	/* 
 		Function init can not set default theme for this controller
 		It must be set in earch action

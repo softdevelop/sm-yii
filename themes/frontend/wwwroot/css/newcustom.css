@@ -56,7 +56,7 @@
 }
 
 #login{
-  width:400px;
+  max-width:400px;
   margin:0 auto;
   margin-top:8px;
   margin-bottom:2%;
@@ -86,7 +86,9 @@
   background:#f0f0f0;
   padding:6% 4%;
 }
-
+#login input[type="text"]{
+    width:92%;
+    }
 #login input[type="email"],input[type="password"]{
   width:92%;
   background:#fff;
@@ -110,7 +112,6 @@
   transition:background .3s;
   -webkit-transition:background .3s;
 }
-
 #login input[type="submit"]:hover{
   background:#2288bb;
 }
@@ -118,5 +119,7 @@
 	color:red;
 	font-weight:bold;
 }
-
+.tilte_login,.errorSummary{
+    text-align: center;
+}
 /*End Css for welcome screen*/
