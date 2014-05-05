@@ -123,3 +123,25 @@
     text-align: center;
 }
 /*End Css for welcome screen*/
+.register-users{
+    max-width: 300px;
+}
+.register-users .row{
+    margin-left: 0;
+    margin-right: 0;
+}
+.register-users .row input{
+    width: 100%;
+}
+.register-users .row input[type="submit"]{
+    width:100%;
+    background:#3399cc;
+    border:0;
+    padding:4%;
+    font-family:'Open Sans',sans-serif;
+    font-size:100%;
+    color:#fff;
+    cursor:pointer;
+    transition:background .3s;
+    -webkit-transition:background .3s;
+}

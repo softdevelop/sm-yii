@@ -43,7 +43,18 @@ class UsersController extends FController
 		/*} else
 			$this->redirect(Yii::app()->controller->module->returnUrl);*/
 	}
-	
+	public function actionRegister(){
+        $model = new User;
+        if(isset($_POST['User'])){
+            $model->attributes=$_POST['User'];
+            var_dump($model->attributes);exit;
+                if($model->save()){
+                    echo "Thanh Cong";
+                }
+        }
+        $this->render('/users/register', array('model'=>$model));
+    }
+
 	public function actionContact()
 	{
 		$pageTitle = 'Contact';
