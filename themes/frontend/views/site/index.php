@@ -80,7 +80,6 @@ var modal = (function(){
 </script>
 
 <div style="min-height:500px;">
-	
 	<?php echo TbHtml::button('Single toggle',
     array('toggle' => true, 'color' => TbHtml::BUTTON_COLOR_PRIMARY)); ?>
- </div>
+</div>

@@ -1,3 +1,19 @@
+<style>
+@media (max-width: 767px){
+	.permission-table {
+		width: 100%;
+		height:200px;
+		margin-bottom: 15px;
+		overflow-y: scroll;
+		overflow-x: scroll;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		border: 1px solid #ddd;
+		-webkit-overflow-scrolling: touch;
+	}
+}
+
+</style>
+
 <?php $this->breadcrumbs = array(
 	'Rights'=>Rights::getBaseUrl(),
 	Rights::t('core', 'Permissions'),
@@ -38,7 +54,8 @@
 		jQuery('.inherited-item').rightsTooltip({
 			title:'<?php echo Rights::t('core', 'Source'); ?>: '
 		});
-
+		
+		
 		/**
 		* Hover functionality for rights' tables.
 		*/

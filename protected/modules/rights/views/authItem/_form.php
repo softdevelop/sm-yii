@@ -11,7 +11,7 @@ div.page-container div.page-content div.form {
 
 <?php if( $model->scenario==='update' ): ?>
 
-	<h3><?php echo Rights::getAuthItemTypeName($model->type); ?></h3>
+	<h3><?php //echo Rights::getAuthItemTypeName($model->type); ?>Group</h3>
 
 <?php endif; ?>
 	

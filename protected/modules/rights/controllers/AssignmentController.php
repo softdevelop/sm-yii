@@ -124,7 +124,6 @@ class AssignmentController extends RController
 		$dataProvider = new RAuthItemDataProvider('assignments', array(
 			'userId'=>$model->getId(),
 		));
-
 		// Render the view
 		$this->render('user', array(
 			'model'=>$model,

@@ -14,11 +14,12 @@
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/bxslider/jquery.bxslider.css" rel="stylesheet" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/fancybox/jquery.fancybox.css" rel="stylesheet" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/main.css" rel="stylesheet" />
+	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/main1.css" rel="stylesheet" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/newcustom.css" rel="stylesheet" />
 	
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/custom.css" rel="stylesheet" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<?php Yii::app()->bootstrap->register(); ?>
 </head>
 
 <body data-page="home" data-boxed="false">
@@ -33,89 +34,28 @@
 	<!-- LAYOUT -->
 	<div id="layout">
 		<!-- HEADER -->
-		<?php $this->renderPartial('//layouts/_header');; ?>
-		
+		<?php //$this->renderPartial('//layouts/_header');; ?>
+		<a class="btn btn-navbar" id="displaymenu" data-toggle="collapse" data-target="#topmenu">
+			<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+		</a>
+		<div class="nav-collapse in collapse" id="topmenu" style="height: auto;">
+			<?php echo TbHtml::tabs(array(
+				array('label' => Yii::t('strings','Home'), 'url' => '#', 'active' => true, 'class'=>''),
+				array('label' => Yii::t('strings','Profile'), 'url' => '#'),
+				array('label' => Yii::t('strings','Messages'), 'url' => '#'),
+				array('label' => Yii::t('strings','LTR'), 'url' => 'javascript:void(0)', 'id'=>'changeTemplate' , 'check' => 'left'),
+			)); ?>
+		</div>
 		<?php echo $content; ?>
-		<!-- FOOTER TOP -->
-
-            <!--div id="footer_top">
-                <ul class="container seamless grid ">
-                    <li class="col-2-12">
-                        <a href="#" class="logo"><b>SoftDevelop</b></a>
-                    </li>
-                    <li class="col-1-12 gap"></li>
-
-
-                    <li class="col-3-12">
-                        <h5>FEATURED POST</h5>
-                        <h4>
-                            <a href="post.html">
-                                It is situated in the bay of
-                            </a>
-                        </h4>
-                        <p> It is situated in the bay of Yeddo, and at but a short distance from that second capital of the Japanese Empire, and the</p>
-                    </li>
-                    <li class="col-1-12 gap"></li>
-
-
-                    <li class="col-2-12">
-                        <h5>ADDRESS</h5>
-                        <p>61 Le Van Si, Hoa Minh wall , Lien Chieu District Da Nang city, Viet Nam </p>
-                        <p>
-                            <a href="tel:84-1233-400-555">84 1233 400 555</a>
-                            <br />
-                            <a href="mailto:softdevelop.inc@gmail.com">contact@webdevelopvn.com</a>
-                        </p>
-                    </li>
-                    <li class="col-1-12 gap"></li>
-
-
-                    <li class="col-2-12">
-                        <h5>FOLLOW US</h5>
-                        <ul class="follow">
-                            <li><a href="https://www.facebook.com/softdevelopinc"></a></li>
-                            <li>
-                                <a href="#">Twitter</a>
-                            </li>
-                            <li><a href="#">Instagram</a></li>
-                        </ul>
-                        <a class="arrow" data-anchor="body"> <i class="icon-angle-up"></i></a>
-                    </li>
-                </ul>
-            </div>
-
-		<div id="footer_bottom">
-			<div class="container grid">
-				<ul class="row">
-					<li class="col-1-3">&copy; Copyright 2013 Softdevelop INC </li>
-					<li class="col-2-3 right">
-						<ul class="navigation">
-							<li><a href="index.html">Home</a> </li>
-							<li> <a href="portfolio4.html">Work</a></li>
-							<li> <a href="about.html">About</a></li>
-							<li><a href="contact.html"> Contact us </a></li>
-						</ul>
-						<ul class="follow">
-							<li><a href="#"><i class="icon-twitter"></i> </a></li>
-							<li> <a href="#"><i class="icon-facebook"></i> </a>
-							</li>
-							<li> <a href="mailto:Softdevelop.inc@gmail.com"><i class="icon-envelope-alt"></i> </a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div-->
+		
 	</div>
 </body>
 		
-		<?php Yii::app()->bootstrap->register(); ?>
+		
 		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/jquery.modal.js"></script>
-		<!--script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/custommodal.js"></script-->
 		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/ltr-rtl.js"></script>
-		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/respond.js"></script>
+		<!--script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/respond.js"></script>
 		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/retina.js"></script>
-		<!--script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/jquery.js"></script-->
 		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/jquery-ui.js"></script>
 		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/jquery.mobile.js"></script>
 		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/include/browser.js"></script>
@@ -126,6 +66,6 @@
 		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/bxslider/jquery.bxslider.min.js"></script>
 		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/fancybox/jquery.fancybox.pack.js"></script>
 		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/switcher/js/switcher.js"></script>
-		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/main.js"></script>
+		<script src="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/js/main.js"></script-->
 		
 </html>

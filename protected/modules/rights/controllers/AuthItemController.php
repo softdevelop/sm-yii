@@ -382,7 +382,7 @@ class AuthItemController extends RController
 
 		$parentDataProvider = new RAuthItemParentDataProvider($model);
 		$childDataProvider = new RAuthItemChildDataProvider($model);
-
+		
 		// Render the view
 		$this->render('update', array(
 			'model'=>$model,

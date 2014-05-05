@@ -99,7 +99,7 @@
 
 					<?php $this->renderPartial('_childForm', array(
 						'model'=>$childFormModel,
-						'itemnameSelectOptions'=>$childSelectOptions[Roles],
+						'itemnameSelectOptions'=>$childSelectOptions,
 					)); ?>
 
 				<?php else: ?>
