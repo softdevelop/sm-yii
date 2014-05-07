@@ -25,7 +25,7 @@ class UsersController extends FController
 	 */
 	public function actionLogin()
 	{
-		//if (Yii::app()->user->isGuest) {
+		if (Yii::app()->user->isGuest) {
 			$model=new UserLogin;
 			//dump($model,6,true);exit;
 			// collect user input data
@@ -40,14 +40,16 @@ class UsersController extends FController
 			}
 			// display the login form
 			$this->render('/users/login',array('model'=>$model));
-		/*} else
-			$this->redirect(Yii::app()->controller->module->returnUrl);*/
+		} else
+			$this->redirect('/');
 	}
 	public function actionRegister(){
         $model = new User;
+			
         if(isset($_POST['User'])){
+			//dump($_POST['User'],4,true);exit;
             $model->attributes=$_POST['User'];
-            var_dump($model->attributes);exit;
+            dump($model->attributes,4,true);exit;
                 if($model->save()){
                     echo "Thanh Cong";
                 }

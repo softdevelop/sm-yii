@@ -107,8 +107,12 @@
 			<li >
 				<a href="<?php echo Yii::app()->createUrl('/rights/authItem/operations'); ?>"><?php echo Yii::t('strings','Roles');?></a>
 			</li>
+			<li >
+				<a href="<?php echo Yii::app()->createUrl('/rights/check/selectuser'); ?>"><?php echo Yii::t('strings','Check Permissons');?></a>
+			</li>
 		</ul>
 	</li>
+	
 	<!--li class="<?php if($this->module->getName()=="banners") echo "open";?>">
 		<a href="javascript:;">
 		<i class="icon-table"></i> 

@@ -38,9 +38,9 @@
 				},
 				success: function(res){
 					if (res.error){
-						$('#result').html('Can Access');
-					}else{
 						$('#result').html('Can Not Access');
+					}else{
+						$('#result').html('Can Access');
 					}
 					
 				},

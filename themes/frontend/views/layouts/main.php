@@ -8,18 +8,19 @@
 	<meta name="format-detection" content="telephone=no" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/include/reset.css" rel="stylesheet" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/include/grid.css" rel="stylesheet" />
-	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/include/awesome.css" rel="stylesheet" />
+	<!--link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/include/awesome.css" rel="stylesheet" /-->
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/include/animations.css" rel="stylesheet" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/revolution/css/revolution.css" rel="stylesheet" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/bxslider/jquery.bxslider.css" rel="stylesheet" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/fancybox/jquery.fancybox.css" rel="stylesheet" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/lib/switcher/css/switcher.css" rel="stylesheet" />
+	
+	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<?php Yii::app()->bootstrap->register(); ?>
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/main1.css" rel="stylesheet" />
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/newcustom.css" rel="stylesheet" />
 	
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_FRONTEND;?>/css/custom.css" rel="stylesheet" />
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-	<?php Yii::app()->bootstrap->register(); ?>
 </head>
 
 <body data-page="home" data-boxed="false">
@@ -39,14 +40,39 @@
 			<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 		</a>
 		<div class="nav-collapse in collapse" id="topmenu" style="height: auto;">
-			<?php echo TbHtml::tabs(array(
-				array('label' => Yii::t('strings','Home'), 'url' => '#', 'active' => true, 'class'=>''),
-				array('label' => Yii::t('strings','Profile'), 'url' => '#'),
-				array('label' => Yii::t('strings','Messages'), 'url' => '#'),
-				array('label' => Yii::t('strings','LTR'), 'url' => 'javascript:void(0)', 'id'=>'changeTemplate' , 'check' => 'left'),
-			)); ?>
+			<?php if(isset(Yii::app()->session['leftOrright']) && (Yii::app()->session['leftOrright']== 'right')){
+				echo TbHtml::tabs(array(
+					array('label' => Yii::t('strings','Home'), 'url' => '#', 'active' => true, 'class'=>'rightmenu'),
+					array('label' => Yii::t('strings','Profile'), 'url' => '#','class'=>'rightmenu'),
+					array('label' => Yii::t('strings','Messages'), 'url' => '#','class'=>'rightmenu'),
+					array('label' => Yii::t('strings','LTR'), 'url' => 'javascript:void(0)', 'id'=>'changeTemplate' , 'check' => 'right','class'=>'rightmenu'),
+				)); 
+			}
+			else{
+				echo TbHtml::tabs(array(
+					array('label' => Yii::t('strings','Home'), 'url' => '#', 'active' => true, 'class'=>''),
+					array('label' => Yii::t('strings','Profile'), 'url' => '#'),
+					array('label' => Yii::t('strings','Messages'), 'url' => '#'),
+					array('label' => Yii::t('strings','LTR'), 'url' => 'javascript:void(0)', 'id'=>'changeTemplate' , 'check' => 'left'),
+				)); 
+			} ?>
 		</div>
-		<?php echo $content; ?>
+		<div class="row-fluid main">
+			<div class="span3 bs-docs-sidebar <?php echo Yii::app()->session['leftOrright']=='right'?'rightmenu':null; ?>">
+				<ul class="nav nav-list bs-docs-sidenav affix-top">
+					<li class="active"><a href="#typography"><i class="icon-chevron-right"></i> Sample</a></li>
+					<li class=""><a href="#"><i class="icon-chevron-right"></i> Sample1</a></li>
+					<li class=""><a href="#"><i class="icon-chevron-right"></i> Sample2</a></li>
+					<li><a href="#"><i class="icon-chevron-right"></i> Sample3</a></li>
+					<li><a href="#"><i class="icon-chevron-right"></i> Sample4</a></li>
+					<li><a href="#"><i class="icon-chevron-right"></i> Sample5</a></li>
+				</ul>
+			</div>
+			<div class="span9">
+				<?php echo $content; ?>
+			</div>
+		</div>
+		
 		
 	</div>
 </body>

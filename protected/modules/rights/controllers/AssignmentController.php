@@ -88,7 +88,6 @@ class AssignmentController extends RController
 
 		$assignedItems = $this->_authorizer->getAuthItems(null, $model->getId());
 		$assignments = array_keys($assignedItems);
-
 		// Make sure we have items to be selected
 		$assignSelectOptions = Rights::getAuthItemSelectOptions(null, $assignments);
 		if( $assignSelectOptions!==array() )

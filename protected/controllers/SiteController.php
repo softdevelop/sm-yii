@@ -19,7 +19,25 @@ class SiteController extends FController
 	{
 		$this->render('js');
 	}
-
+	
+	/**
+	 * This is the action to handle layout for frontend
+	 */
+	public function actionAjaxForTheme()
+	{
+		$leftOrright = $_POST['check'];
+		if ($leftOrright == 'left')
+			Yii::app()->session['leftOrright'] = 'right';
+		else Yii::app()->session['leftOrright'] = 'left';
+		exit;
+	}
+	
+	public function actioncheck()
+	{
+		
+		echo Yii::app()->session['leftOrright'];
+		exit;
+	}
 	/**
 	 * This is the action to handle external exceptions.
 	 */
