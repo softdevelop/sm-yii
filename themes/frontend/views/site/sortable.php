@@ -22,7 +22,17 @@
 			<tr>
 				<td><?php echo $i; $i++;?></td>
 				<td><?php echo $value->username;?></td>
-				<td><?php echo $value->email;?></td>
+				<td><?php
+					$this->widget('editable.Editable', array(
+						'type'      => 'text',
+						'name'      => 'user_name',
+						'pk'        => $value->id,
+						'text'      => $value->email,
+						'url'       => $this->createUrl('/user/user/editemail'), 
+						'title'     => 'Enter an email',
+						'placement' => 'right'
+					));
+				//echo $value->email;?></td>
 				<td><?php echo User::itemAlias("UserStatus",$value->status);?></td>
 			</tr>
 		<?php endforeach;?>

@@ -25,7 +25,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','editemail'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -44,7 +44,22 @@ class UserController extends Controller
 			'model'=>$model,
 		));
 	}
-
+	
+	/**
+	 * Edit Email
+	 */
+	public function actionEditemail()
+	{
+		$id = $_POST['pk'];
+		$email = $_POST['value'];
+		$model = User::model()->findByPk($id);
+		if($model===null)
+				throw new CHttpException(404,'The requested page does not exist.');
+		$model->email= $email;
+		if ($model->save()){
+			exit;
+		}
+	}
 	/**
 	 * Lists all models.
 	 */

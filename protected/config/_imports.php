@@ -30,6 +30,10 @@ return array(
 	'application.modules.projects.models.*', 
 	'application.modules.projects.components.*',
 	
+	'application.modules.stocks.StocksModule', 
+	'application.modules.stocks.models.*', 
+	'application.modules.stocks.components.*',
+	
 	'editable.*', //easy include of editable classes
 	
 	// include bootstrap

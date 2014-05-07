@@ -1,5 +1,4 @@
 <?php
-
 class SiteController extends FController
 {
 	public $layout='//layouts/main';
@@ -8,12 +7,12 @@ class SiteController extends FController
 		It must be set in earch action
 	*/ 
 	
-	 public function init()
-	 {
+	public function init()
+	{
 		Yii::import('application.modules.teams.models.Team');
 		Yii::app()->theme = 'frontend';
 		parent::init();
-	 }
+	}
 
 	public function actionPartial()
 	{
@@ -55,14 +54,21 @@ class SiteController extends FController
 			'users'=>$users,
 		));
 	}
-	
-	public function actionAbout()
+	/*
+	** 	Data tabular
+	*/
+	public function actionTabular()
 	{
 		
-		$team = Team::model()->findAll(); 
-		$this->render('about',array(
-			'team'=>$team,
+		$criteria=new CDbCriteria();
+		$criteria->distinct = true;
+		$criteria->select = 't.stockname';
+		//dump($criteria);exit;
+		$stocks = Stock::model()->findAll($criteria);
+		$this->render('tabular',array(
+			'stocks'=>$stocks,
 		));
+		
 	}
 	/*
 	** 	Action Project: show infor for Project.

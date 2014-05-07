@@ -43,7 +43,7 @@
 			<?php if(isset(Yii::app()->session['leftOrright']) && (Yii::app()->session['leftOrright']== 'right')){
 				echo TbHtml::tabs(array(
 					array('label' => Yii::t('strings','Home'), 'url' => '/', 'active' => true, 'class'=>'rightmenu'),
-					array('label' => Yii::t('strings','Profile'), 'url' => '#','class'=>'rightmenu'),
+					array('label' => Yii::t('strings','Tabular'), 'url' => '/site/tabular','class'=>'rightmenu'),
 					array('label' => Yii::t('strings','Sortable'), 'url' => '/site/sortable','class'=>'rightmenu'),
 					array('label' => Yii::t('strings','LTR'), 'url' => 'javascript:void(0)', 'id'=>'changeTemplate' , 'check' => 'right','class'=>'rightmenu'),
 				)); 
@@ -51,7 +51,7 @@
 			else{
 				echo TbHtml::tabs(array(
 					array('label' => Yii::t('strings','Home'), 'url' => '/', 'active' => true, 'class'=>''),
-					array('label' => Yii::t('strings','Profile'), 'url' => '#'),
+					array('label' => Yii::t('strings','Tabular'), 'url' => '/site/tabular'),
 					array('label' => Yii::t('strings','Sortable'), 'url' => '/site/sortable'),
 					array('label' => Yii::t('strings','LTR'), 'url' => 'javascript:void(0)', 'id'=>'changeTemplate' , 'check' => 'left'),
 				)); 
