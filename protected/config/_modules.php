@@ -43,4 +43,5 @@ return array(
 	'test',
 	'teams',
 	'projects', 
+	'stocks', 
 );
