@@ -47,21 +47,12 @@ class SiteController extends FController
 		$this->render('index',array( ));
 	}
 	
-	public function actionContact()
+	public function actionSortable()
 	{
-		$pageTitle = 'Contact';
-		$model=new Contact;
-		if(isset($_POST['Contact']))
-		{
-			$model->attributes=$_POST['Contact'];
-			if($model->save()){
-				Yii::app()->user->setFlash('successcontact', "Thank you. Your message just sent to admin and we will contact with you as soon as posible");
-				$this->redirect(array('/site/contact'));
-			}
-		}
-		//$this->layout='//layouts/main';
-		$this->render('contact',array(
-			'model'=>$model,
+		$users = User::model()->findAll();
+	//	dump($users);exit;
+		$this->render('sortable',array(
+			'users'=>$users,
 		));
 	}
 	
