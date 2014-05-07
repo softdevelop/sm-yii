@@ -2,14 +2,20 @@
     <!--div id="triangle"></div-->
     <h1 class="tilte_login">Register</h1>
     <?php $form=$this->beginWidget('CActiveForm', array(
-        'id'=>'user-form',
-        'enableAjaxValidation'=>true,
+       // 'id'=>'user-form',
+        //'enableAjaxValidation'=>true,
     ));
     ?>
     <div class="row">
         <?php echo CHtml::errorSummary($model); ?>
     </div>
-
+   <div class="row">
+       <?php if(Yii::app()->user->hasFlash('success')):?>
+           <div class="success">
+               <?php echo Yii::app()->user->getFlash('success'); ?>
+           </div>
+       <?php endif; ?>
+   </div>
     <div class="row">
         <?php echo $form->labelEx($model,'username'); ?>
         <?php echo $form->textField($model,'username'); ?>
@@ -19,6 +25,11 @@
     <div class="row">
         <?php echo $form->labelEx($model,'password'); ?>
         <?php echo $form->passwordField($model,'password'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model,'confirmation_password'); ?>
+        <?php echo $form->passwordField($model,'confirmation_password'); ?>
     </div>
 
     <div class="row">

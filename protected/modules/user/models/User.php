@@ -8,7 +8,7 @@ class User extends CActiveRecord
 	
 	//TODO: Delete for next version (backward compatibility)
 	const STATUS_BANED=-1;
-	
+	public $confirmation_password;
 	/**
 	 * The followings are the available columns in table 'users':
 	 * @var integer $id
@@ -59,18 +59,23 @@ class User extends CActiveRecord
 			array('superuser', 'in', 'range'=>array(0,1)),
             array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
-			array('username, email, superuser, status', 'required'),
+			array('username, email, superuser, status, confirmation_password, password', 'required'),
 			array('superuser, status', 'numerical', 'integerOnly'=>true),
-			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, birthday, address, firstname, lastname', 'safe', 'on'=>'search'),
+            array('confirmation_password', 'compare', 'compareAttribute'=>'password'),
+			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status', 'safe', 'on'=>'search'),
 		):((Yii::app()->user->id==$this->id)?array(
-			array('username, email', 'required'),
+			array('username, email, confirmation_password, password', 'required'),
 			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
 			array('email', 'email'),
 			array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
 			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
+            array('confirmation_password', 'compare', 'compareAttribute'=>'password'),
+            array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, birthday, address, firstname, lastname', 'safe', 'on'=>'search'),
+            array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, birthday, address, firstname, lastname', 'safe'),
+		):array(
 
-		):array()));
+        )));
 	}
 
 	/**
@@ -91,12 +96,13 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => UserModule::t("Id"),
-			'username'=>UserModule::t("username"),
+			'username'=>UserModule::t("Username"),
             'firstname'=>UserModule::t("Firstname"),
             'lastname'=>UserModule::t("Lastname"),
             'birthday'=>UserModule::t("Birthday"),
             'address'=>UserModule::t("Address"),
-			'password'=>UserModule::t("password"),
+			'password'=>UserModule::t("Password"),
+            'confirmation_password'=>UserModule::t('Confirmation password'),
 			'verifyPassword'=>UserModule::t("Retype Password"),
 			'email'=>UserModule::t("E-mail"),
 			'verifyCode'=>UserModule::t("Verification Code"),
@@ -199,5 +205,13 @@ class User extends CActiveRecord
 
     public function setLastvisit($value) {
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
+    }
+
+    public function codepass($password)
+    {
+       //$data= $_POST['User'];
+       $this->password=UserModule::encrypting($password);
+       $this->confirmation_password=UserModule::encrypting($password);
+       return true;
     }
 }

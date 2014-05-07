@@ -25,6 +25,11 @@
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
+    <div class="row">
+        <?php echo $form->labelEx($model,'confirmation_password'); ?>
+        <?php echo $form->passwordField($model,'confirmation_password',array('size'=>60,'maxlength'=>128)); ?>
+        <?php echo $form->error($model,'confirmation_password'); ?>
+    </div>
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
 		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>

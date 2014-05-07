@@ -94,7 +94,7 @@
   background:#fff;
   margin-bottom:4%;
   border:1px solid #ccc;
-  padding:4%;
+
   font-family:'Open Sans',sans-serif;
   font-size:95%;
   color:#555;
@@ -144,4 +144,18 @@
     cursor:pointer;
     transition:background .3s;
     -webkit-transition:background .3s;
+}
+
+.success {
+    text-align: center;
+    color: green;
+}
+.errorSummary{
+    color: red;
+}
+.righttoleft .row input{
+    text-align: right;
+}
+.righttoleft .row input[type="submit"]{
+    text-align: center;
 }

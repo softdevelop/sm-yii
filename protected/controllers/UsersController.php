@@ -44,15 +44,27 @@ class UsersController extends FController
 			$this->redirect('/');
 	}
 	public function actionRegister(){
-        $model = new User;
-			
+        $this->layout='//layouts/main';
+        $model = new User();
         if(isset($_POST['User'])){
-			//dump($_POST['User'],4,true);exit;
+            $data= $_POST['User'];
+            //var_dump($data);
             $model->attributes=$_POST['User'];
-            dump($model->attributes,4,true);exit;
+            //$model->userregister();
+            $model->status=UserModule::t(1);
+            $model->birthday=UserModule::t($data[birthday]);
+            $model->firstname=UserModule::t($data[firstname]);
+            $model->address=UserModule::t($data[address]);
+            $model->lastname=UserModule::t($data[lastname]);
+
+            if($model->validate()){
+                $model->codepass($data['password']);
                 if($model->save()){
-                    echo "Thanh Cong";
+
+                    Yii::app()->user->setFlash('success','Your Register Complete');
+                    $this->redirect('/users/register');
                 }
+            }
         }
         $this->render('/users/register', array('model'=>$model));
     }

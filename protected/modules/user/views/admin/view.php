@@ -34,7 +34,7 @@ $this->menu=array(
 				));
 		}
 	}
-	
+
 	array_push($attributes,
 		'password',
 		'email',

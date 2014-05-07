@@ -6,4 +6,16 @@
     <?php echo CHtml::activeTextField($model,'username',array('placeholder'=>'Email')) ?>
 	<?php echo CHtml::activePasswordField($model,'password',array('placeholder'=>'Password')) ?>
 	<?php echo CHtml::submitButton(UserModule::t("Login"),array('style'=>'line-height: 14px !important;')); ?>
+    <div>
+        <?php
+        $this->widget('zii.widgets.CMenu', array(
+            'items'=>array(
+                array(
+                'label'=>UserModule::t("Register Account"),
+                'url'=>array('/Users/register'),
+                ),
+            ),
+        ));
+        ?>
+    </div>
 </div>
