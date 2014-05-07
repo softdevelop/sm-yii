@@ -28,13 +28,13 @@ class SiteController extends FController
 		$leftOrright = $_POST['check'];
 		if ($leftOrright == 'left')
 			Yii::app()->session['leftOrright'] = 'right';
-		else Yii::app()->session['leftOrright'] = 'left';
-		exit;
+		else
+            Yii::app()->session['leftOrright'] = 'left';
+		return Yii::app()->session['leftOrright'];
 	}
 	
 	public function actioncheck()
 	{
-		
 		echo Yii::app()->session['leftOrright'];
 		exit;
 	}
