@@ -93,34 +93,36 @@ class AdminController extends BController
 	public function actionCreate()
 	{
 		$model=new User;
-		$profile=new Profile;
-		$this->performAjaxValidation(array($model,$profile));
+		//$profile=new Profile;
+		$this->performAjaxValidation(array($model));
 		if(isset($_POST['User']))
 		{
 
 			$model->attributes=$_POST['User'];
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
-			$profile->attributes=$_POST['Profile'];
-			$profile->user_id=0;
+			//$profile->attributes=$_POST['Profile'];
+			//$profile->user_id=0;
 
-			if($model->validate()&&$profile->validate()) {
+			if($model->validate()) {
                 $model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save(false)) {
 
                     //var_dump('11');exit;
-					$profile->user_id=$model->id;
-					$profile->save();
+					//$profile->user_id=$model->id;
+					//$profile->save();
 				}else{
                     $errores = $model->getErrors();
                     dump($errores);exit;
                 }
 				$this->redirect(array('view','id'=>$model->id));
-			} else $profile->validate();
+			} else {
+				
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-			'profile'=>$profile,
+			//'profile'=>$profile,
 		));
 	}
 
