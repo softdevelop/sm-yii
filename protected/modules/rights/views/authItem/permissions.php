@@ -1,19 +1,23 @@
-<style>
-@media (max-width: 767px){
-	.permission-table {
-		width: 100%;
-		height:200px;
-		margin-bottom: 15px;
-		overflow-y: scroll;
-		overflow-x: scroll;
-		-ms-overflow-style: -ms-autohiding-scrollbar;
-		border: 1px solid #ddd;
-		-webkit-overflow-scrolling: touch;
-	}
-}
-
-</style>
-
+<?php 
+	$baseUrl = Yii::app()->baseUrl.WWWROOT_BACKEND;
+//echo 	$baseUrl;exit;
+	$cs = Yii::app()->getClientScript();
+	$cs->registerCssFile($baseUrl.'/css/permission.css');
+	$cs->registerScriptFile($baseUrl.'/js/jquery-powertable.js');
+?>
+<script>
+	$(document).ready(function(){
+		$('.items thead tr th:first-child').attr('data-ptcolumn', 'description');
+		$pt = $('.items').powertable({
+			controller: 'none',
+			fixedColumns: ['description'],
+			fixedRows: [0],
+			moveDisabled: ['description'],
+			showHideDisabled: ['description']
+		});
+			
+	});
+</script>
 <?php $this->breadcrumbs = array(
 	'Rights'=>Rights::getBaseUrl(),
 	Rights::t('core', 'Permissions'),
@@ -35,15 +39,15 @@
 	<p><?php echo CHtml::link(Rights::t('core', 'Generate items for controller actions'), array('authItem/generate'), array(
 	   	'class'=>'generator-link',
 	)); ?></p>
-
-	<?php $this->widget('zii.widgets.grid.CGridView', array(
-		'dataProvider'=>$dataProvider,
-		'template'=>'{items}',
-		'emptyText'=>Rights::t('core', 'No authorization items found.'),
-		'htmlOptions'=>array('class'=>'grid-view permission-table'),
-		'columns'=>$columns,
-	)); ?>
-
+	<div id="outerDiv">
+		<?php $this->widget('zii.widgets.grid.CGridView', array(
+			'dataProvider'=>$dataProvider,
+			'template'=>'{items}',
+			'emptyText'=>Rights::t('core', 'No authorization items found.'),
+			'htmlOptions'=>array('class'=>'grid-view permission-table','id'=>'listingsTable1'),
+			'columns'=>$columns,
+		)); ?>
+	</div>
 	<p class="info">*) <?php echo Rights::t('core', 'Hover to see from where the permission is inherited.'); ?></p>
 
 	<script type="text/javascript">

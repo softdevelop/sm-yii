@@ -159,3 +159,9 @@
 .righttoleft .row input[type="submit"]{
     text-align: center;
 }
+.righttoleft .span12 input{
+    text-align: right;
+}
+.righttoleft .span12 input[type="submit"]{
+    text-align: center;
+}

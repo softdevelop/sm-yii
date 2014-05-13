@@ -37,9 +37,37 @@
 			</tr>
 		<?php endforeach;?>
 	<?php endif;?>
+			
 	</tbody>
 </table>
-
+<!--div id="tab-content1" class="tab-content animated fadeIn">
+			<?php 
+				$this->widget('editable.EditableDetailView', array(
+					'id' => 'user-details',
+					'data' => $model,
+					'url' => $this->createUrl('user/update'),  //common submit url for all editables
+					'attributes'=>array(
+						'username',
+						array(  //select loaded from database
+							'name' => 'email',
+						),
+						array(  //select loaded from database
+							'name' => 'password',
+						),
+						array(  //select loaded from array
+							'name' => 'confirmation_password',
+						),             
+						
+					)
+				));
+			?>
+			
+		
+<div id="msg" class="alert hide"></div>
+<div style="text-align: center">
+	<button id="save-btn" class="btn btn-primary hide" style="display: inline-block;">Save</button>
+</div>
+</div-->
 <script>
 	$(document).ready(function(){
         $("#myTable").tablesorter(); 

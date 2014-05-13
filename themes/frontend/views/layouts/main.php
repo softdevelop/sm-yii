@@ -40,11 +40,12 @@
 			<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 		</a>
 		<div class="nav-collapse in collapse" id="topmenu" style="height: auto;">
-			<?php if(isset(Yii::app()->session['leftOrright']) && (Yii::app()->session['leftOrright']== 'right')){
+			<?php if(isset(currentUser()->language) && (currentUser()->language == 'ar')){
 				echo TbHtml::tabs(array(
 					array('label' => Yii::t('strings','Home'), 'url' => '/', 'active' => true, 'class'=>'rightmenu'),
 					array('label' => Yii::t('strings','Tabular'), 'url' => '/site/tabular','class'=>'rightmenu'),
 					array('label' => Yii::t('strings','Sortable'), 'url' => '/site/sortable','class'=>'rightmenu'),
+					array('label' => Yii::t('strings','Log Out'), 'url' => '/users/logout','class'=>'rightmenu'),
 					array('label' => Yii::t('strings','LTR'), 'url' => 'javascript:void(0)', 'id'=>'changeTemplate' , 'check' => 'right','class'=>'rightmenu'),
 				)); 
 			}
@@ -53,18 +54,29 @@
 					array('label' => Yii::t('strings','Home'), 'url' => '/', 'active' => true, 'class'=>''),
 					array('label' => Yii::t('strings','Tabular'), 'url' => '/site/tabular'),
 					array('label' => Yii::t('strings','Sortable'), 'url' => '/site/sortable'),
+					array('label' => Yii::t('strings','Log Out'), 'url' => '/users/logout'),
 					array('label' => Yii::t('strings','LTR'), 'url' => 'javascript:void(0)', 'id'=>'changeTemplate' , 'check' => 'left'),
 				)); 
 			} ?>
 		</div>
 		<div class="row-fluid main">
-			<div class="span3 bs-docs-sidebar <?php echo Yii::app()->session['leftOrright']=='right'?'rightmenu':null; ?>">
+			<div class="span3 bs-docs-sidebar <?php 
+			//echo Yii::app()->session['leftOrright']=='right'?'rightmenu':null; 
+			if (currentUser()->language == 'ar') echo 'rightmenu';?>">
 				<ul class="nav nav-list bs-docs-sidenav affix-top">
-					<li class="active"><a href="#typography"><i class="icon-chevron-right"></i> Sample</a></li>
-					<li class=""><a href="#"><i class="icon-chevron-right"></i> Sample1</a></li>
-					<li class=""><a href="#"><i class="icon-chevron-right"></i> Sample2</a></li>
-					<li><a href="#"><i class="icon-chevron-right"></i> Sample3</a></li>
-					<li><a href="#"><i class="icon-chevron-right"></i> Sample4</a></li>
+					<li class="active">
+						<a href="#typography"><i class="icon-chevron-right"></i><?php echo Yii::t('strings','Sample') ?> </a>
+					</li>
+					<li class="">
+						<a href="<?php echo Yii::app()->createUrl('/site/popup')?>"><i class="icon-chevron-right"></i><?php echo Yii::t('strings','Popup screen') ?></a>
+					</li>
+					<li class="">
+						<a href="<?php echo Yii::app()->createUrl('/site/parentchild')?>"><i class="icon-chevron-right"></i><?php echo Yii::t('strings','Parent-Child');?></a>
+					</li>
+					<li>
+						<a href="<?php echo Yii::app()->createUrl('/site/datavalidation')?>"><i class="icon-chevron-right"></i> <?php echo Yii::t('strings','Data Ajax');?></a>
+					</li>
+					<li><a href="<?php echo Yii::app()->createUrl('/language')?>"><i class="icon-chevron-right"></i><?php echo Yii::t('strings','Language');?></a></li>
 					<li><a href="#"><i class="icon-chevron-right"></i> Sample5</a></li>
 				</ul>
 			</div>

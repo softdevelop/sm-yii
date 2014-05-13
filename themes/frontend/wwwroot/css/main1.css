@@ -88,6 +88,14 @@ margin-top: 5px;
 .text-ali-right{
 	text-align:right;
 }
+@media (max-width: 768px){
+	.bs-docs-sidenav {
+		width: 100%;
+	}
+	.row-fluid [class*="span"]{
+		margin-left:0px !important;
+	}
+}
 @media (max-width: 979px){
 	#topmenu >ul{
 		border: 1px solid #ccc;

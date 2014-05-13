@@ -9,7 +9,7 @@ class LoginController extends BController
 	 * Displays the login page
 	 */
 	public function actionLogin()
-	{
+	{	
 		if (Yii::app()->user->isGuest) {
 			$model=new UserLogin;
 			// collect user input data

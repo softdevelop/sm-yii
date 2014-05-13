@@ -22,9 +22,17 @@ class FController extends CController
 	 */
 	public $breadcrumbs=array();
 	public $categories = array();
+	public $language = 'en';
 	
 	public function init()
 	{
+		if(Yii::app()->user->isGuest) {
+			$this->redirect('/users/login');
+		}else{
+			$current = User::model()->findByPk(Yii::app()->user->id);
+			Yii::app()->language = $current->language;
+		}
+		
 		Yii::app()->theme = 'frontend';
 		parent::init();
 	}

@@ -133,28 +133,31 @@ class AdminController extends BController
 	public function actionUpdate()
 	{
 		$model=$this->loadModel();
-		$profile=$model->profile;
-		$this->performAjaxValidation(array($model,$profile));
+		//$profile=$model->profile;
+		$this->performAjaxValidation(array($model));
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			$profile->attributes=$_POST['Profile'];
 			
-			if($model->validate()&&$profile->validate()) {
+			
+			if($model->validate()) {
 				$old_password = User::model()->notsafe()->findByPk($model->id);
 				if ($old_password->password!=$model->password) {
 					$model->password=Yii::app()->controller->module->encrypting($model->password);
 					$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
 				}
-				$model->save();
-				$profile->save();
+				//Why save false --> just encrypting password
+				$model->save(false);
+				//$profile->save();
 				$this->redirect(array('view','id'=>$model->id));
-			} else $profile->validate();
+			} else {
+				//$profile->validate();
+			}
 		}
 	
 		$this->render('update',array(
 			'model'=>$model,
-			'profile'=>$profile,
+			//'profile'=>$profile,
 		));
 	}
 
@@ -165,12 +168,14 @@ class AdminController extends BController
 	 */
 	public function actionDelete()
 	{
+		
 		if(Yii::app()->request->isPostRequest)
-		{
+		{	
 			// we only allow deletion via POST request
 			$model = $this->loadModel();
-			$profile = Profile::model()->findByPk($model->id);
-			$profile->delete();
+			
+			//$profile = Profile::model()->findByPk($model->id);
+			//$profile->delete();
 			$model->delete();
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_POST['ajax']))

@@ -17,7 +17,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 	<meta content="" name="description" />
 	<meta content="" name="author" />
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->       
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>	
+	<!--link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'-->	
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_BACKEND;?>/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_BACKEND;?>/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
 	<link href="<?php echo Yii::app()->request->baseUrl.WWWROOT_BACKEND;?>/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>

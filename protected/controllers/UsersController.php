@@ -1,6 +1,6 @@
 <?php
 
-class UsersController extends FController
+class UsersController extends CController
 {
 	public $layout='//layouts/_login';
 	/* 
@@ -10,7 +10,7 @@ class UsersController extends FController
 	
 	 public function init()
 	 {
-		//Yii::import('application.modules.teams.models.Team');
+		//Yii::import('application.modules.stocks.models.Stock');
 		Yii::app()->theme = 'frontend';
 		parent::init();
 	 }
@@ -25,6 +25,10 @@ class UsersController extends FController
 	 */
 	public function actionLogin()
 	{
+		//echo 'dd';exit;
+		//$currentUser = User::model()->findByPk(1);
+		//$currentUser = new Stock;
+		//dump($currentUser->language);exit;
 		if (Yii::app()->user->isGuest) {
 			$model=new UserLogin;
 			//dump($model,6,true);exit;
@@ -43,6 +47,15 @@ class UsersController extends FController
 		} else
 			$this->redirect('/');
 	}
+	
+	/**
+	 * Logout the current user.
+	 */
+	public function actionLogout()
+	{
+		Yii::app()->user->logout();
+		$this->redirect('/users/login');
+	}
 	public function actionRegister(){
         $this->layout='//layouts/main';
         $model = new User();
@@ -52,11 +65,14 @@ class UsersController extends FController
             $model->attributes=$_POST['User'];
             //$model->userregister();
             $model->status=UserModule::t(1);
-            $model->birthday=UserModule::t($data[birthday]);
+            /*$model->birthday=UserModule::t($data[birthday]);
             $model->firstname=UserModule::t($data[firstname]);
             $model->address=UserModule::t($data[address]);
-            $model->lastname=UserModule::t($data[lastname]);
-
+            $model->lastname=UserModule::t($data[lastname]);*/
+			$model->birthday=$_POST['User']['birthday'];
+			$model->firstname=$_POST['User']['firstname'];
+			$model->lastname=$_POST['User']['lastname'];
+			$model->address=$_POST['User']['address'];
             if($model->validate()){
                 $model->codepass($data['password']);
                 if($model->save()){

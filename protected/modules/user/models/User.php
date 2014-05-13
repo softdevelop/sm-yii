@@ -62,7 +62,8 @@ class User extends CActiveRecord
 			array('username, email, superuser, status, confirmation_password, password', 'required'),
 			array('superuser, status', 'numerical', 'integerOnly'=>true),
             array('confirmation_password', 'compare', 'compareAttribute'=>'password'),
-			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status', 'safe', 'on'=>'search'),
+			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status ,birthday, address, firstname, lastname, language', 'safe'),
+			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status ,birthday, address, firstname, lastname, language', 'safe', 'on'=>'search'),
 		):((Yii::app()->user->id==$this->id)?array(
 			array('username, email, confirmation_password, password', 'required'),
 			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
@@ -71,10 +72,10 @@ class User extends CActiveRecord
 			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
             array('confirmation_password', 'compare', 'compareAttribute'=>'password'),
-            array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, birthday, address, firstname, lastname', 'safe', 'on'=>'search'),
-            array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, birthday, address, firstname, lastname', 'safe'),
+            array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, birthday, address, firstname, lastname,language', 'safe', 'on'=>'search'),
+            array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, birthday, address, firstname, lastname, language', 'safe'),
 		):array(
-
+			
         )));
 	}
 
@@ -112,6 +113,7 @@ class User extends CActiveRecord
 			'lastvisit_at' => UserModule::t("Last visit"),
 			'superuser' => UserModule::t("Superuser"),
 			'status' => UserModule::t("Status"),
+			'language' => UserModule::t("Language"),
 		);
 	}
 	
@@ -140,7 +142,7 @@ class User extends CActiveRecord
     {
         return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
             'alias'=>'user',
-            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status',
+            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status,user.language',
         ));
     }
 	
@@ -182,11 +184,13 @@ class User extends CActiveRecord
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
+        $criteria->compare('language',$this->language);
 
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
         	'pagination'=>array(
 				'pageSize'=>Yii::app()->getModule('user')->user_page_size,
+				
 			),
         ));
     }

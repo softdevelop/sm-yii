@@ -9,6 +9,10 @@ class SiteController extends FController
 	
 	public function init()
 	{
+		if(Yii::app()->user->isGuest) {
+			$this->redirect('/users/login');
+		}
+		//Yii::app()->language = Yii::app()->session['language'];
 		Yii::import('application.modules.teams.models.Team');
 		Yii::app()->theme = 'frontend';
 		parent::init();
@@ -42,21 +46,82 @@ class SiteController extends FController
 	 */
 	public function actionIndex()
 	{
-		//$this->layout='//layouts/main';
+		$this->getAction();exit;
 		$this->render('index',array( ));
 	}
 	
 	public function actionSortable()
 	{
 		$users = User::model()->findAll();
+		$model =  new User;
+		if($model->isNewRecord) {
+			Yii::app()->clientScript->registerScript('new-user', '
+			$("#save-btn").show();
+			$("#save-btn").click(function() {
+				$("#user-details .editable").editable("submit", {
+					url: "'.$this->createUrl('/site/create').'",
+					success: function(data) {
+						res = jQuery.parseJSON(data );
+						console.log(res.errors);
+						if(res.errors) {
+							$.each(res.errors, function(k, v) { msg += v+"<br>"; });
+							$("#msg").removeClass("alert-success").addClass("alert-error")
+								.html(msg).show();
+							 
+						}else{
+							msg = "User created!";
+							$("#msg").removeClass("alert-error").addClass("alert-success")
+								.html(msg).show();
+							$("#tab-content1").append(data);
+						}
+						
+						$("#save-btn").hide();
+					},
+					error: function(data) {
+						var msg = "";
+						if(data.errors) { //validation error
+							$.each(data.errors, function(k, v) { msg += v+"<br>"; });
+						} else if(data.responseText) { //ajax error
+							msg = data.responseText;
+						}
+						$("#msg").removeClass("alert-success").addClass("alert-error")
+								 .html(msg).show();         
+					 }
+				});
+			});
+			');   
+		};
 	//	dump($users);exit;
 		$this->render('sortable',array(
 			'users'=>$users,
+			'model'=>$model,
 		));
 	}
 	/*
-	** 	Data tabular
+	** 	Create user
 	*/
+	public function actionCreate(){
+		if(Yii::app()->request->isPostRequest){
+			$model = new User;
+			$model->attributes = $_POST;
+			if($model->validate()) {
+				$model->codepass($model->password);
+				$model->save(false);
+				/*$this->renderPartial('reload',array(
+					'model'=>$model,
+				));*/
+				
+				echo CJSON::encode(array('id' => $model->primaryKey));
+				exit;
+			} else {
+				//echo 'error';exit;
+				$errors = array_map(function($v){ return join(', ', $v); }, $model->getErrors());
+				echo CJSON::encode(array('errors' => $errors));
+			}
+		} else {
+			throw new CHttpException(400, 'Invalid request');  
+		}
+	}
 	public function actionTabular()
 	{
 		
@@ -71,6 +136,182 @@ class SiteController extends FController
 		
 	}
 	/*
+	** 	Popup screen
+	*/
+	public function actionPopup()
+	{
+		
+		$this->render('popup',array(
+			//'stocks'=>$stocks,
+		));
+		
+	}
+	/*
+	** 	Popup screen
+	*/
+	public function actionReload()
+	{
+		$users = User::model()->findAll();
+		$this->renderPartial('reload',array(
+			'users'=>$users,
+		));
+		
+	}
+	
+	/*
+	** 	Popup screen
+	*/
+	public function actionParentchild()
+	{
+		$users = User::model()->findAll();
+		$model =  new User;
+		if($model->isNewRecord) {
+			Yii::app()->clientScript->registerScript('new-user', '
+			$("#save-btn").show();
+			$("#save-btn").click(function() {
+				$("#user-details .editable").editable("submit", {
+					url: "'.$this->createUrl('/site/create').'",
+					success: function(data) {
+						res = jQuery.parseJSON(data);
+						console.log(res.errors);
+						msg = "";
+						if(res.errors) {
+							$.each(res.errors, function(k, v) { msg += v+"<br>"; });
+							console.log(msg);
+							$("#msg").removeClass("alert-success").addClass("alert-error")
+								.html(msg).show();
+							
+						}else{
+							msg = "User created!";
+							$("#msg").removeClass("alert-error").addClass("alert-success")
+								.html(msg).show();
+							location.reload();
+						}
+						
+						//$("#save-btn").hide();
+					},
+					error: function(data) {
+						var msg = "";
+						if(data.errors) { //validation error
+							$.each(data.errors, function(k, v) { msg += v+"<br>"; });
+						} else if(data.responseText) { //ajax error
+							msg = data.responseText;
+						}
+						$("#msg").removeClass("alert-success").addClass("alert-error")
+								 .html(msg).show();         
+					 }
+				});
+			});
+			');   
+		};
+		$this->render('parent-child',array(
+			//'stocks'=>$stocks,
+			'model'=>$model,
+			'users'=>$users,
+		));
+		
+	}
+	
+	/*
+	** 	Action Project: show infor for Project.
+	*/
+	public function actionDatavalidation()
+	{
+		$model = new Booking;
+		// Validation for Step 1
+		if(isset($_POST['step1'])){
+			$model->price = $_POST['price'];
+			$model->room = $_POST['room'];
+			$model->days = $_POST['days'];
+			$attributes = array('price', 'room', 'days');
+			$valitor = $this->performAjaxValidation($model, $attributes);
+			//dump($valitor);exit;
+			if (($valitor) == '[]'){
+				$result = array('error'=> false);
+				Yii::app()->session['step1'] = array(
+					'price' => $model->price,
+					'room' => $model->room,
+					'days' => $model->days,
+				);
+			} else{
+				$result = array_merge(
+					array('error'=> true),
+					array('content'=>json_encode($valitor))
+				);
+			}
+			jsonOut($result);
+			exit();
+        }
+		// Validation for Step 2
+		if(isset($_POST['step2'])){
+			$model->name = $_POST['name'];
+			$model->address = $_POST['address'];
+			$model->phone = $_POST['phone'];
+			$attributes = array('name', 'address', 'phone');
+			$valitor = $this->performAjaxValidation($model, $attributes);
+			//dump($valitor);exit;
+			if (($valitor) == '[]'){
+				$result = array('error'=> false);
+				Yii::app()->session['step2'] = array(
+					'name' => $model->name,
+					'address' => $model->address,
+					'phone' => $model->phone,
+				);
+			} else{
+				$result = array_merge(
+					array('error'=> true),
+					array('content'=>json_encode($valitor))
+				);
+			}
+			jsonOut($result);
+			exit();
+        }
+		
+		// Validation for Step 3
+		if(isset($_POST['step3'])){
+			$model->credit = $_POST['credit'];
+			$attributes = array('credit', );
+			$valitor = $this->performAjaxValidation($model, $attributes);
+			//dump($valitor);exit;
+			if (($valitor) == '[]'){
+				$result = array('error'=> false);
+				$model->price = Yii::app()->session['step1']['price'];
+				$model->room = Yii::app()->session['step1']['room'];
+				$model->days = Yii::app()->session['step1']['days'];
+				$model->name = Yii::app()->session['step2']['name'];
+				$model->address = Yii::app()->session['step2']['address'];
+				$model->phone = Yii::app()->session['step2']['phone'];
+				if ($model->save(false)){
+					Yii::app()->user->setFlash('success', Yii::t('strings','Data save!'));
+					$result = array('error'=> false);
+				}
+			} else{
+				$result = array_merge(
+					array('error'=> true),
+					array('content'=>json_encode($valitor))
+				);
+			}
+			jsonOut($result);
+			exit();
+        }
+		// clear Session
+		
+		unset(Yii::app()->session['step1']);
+		unset(Yii::app()->session['step2']);
+		unset(Yii::app()->session['step3']);
+		
+		$this->render('datavalidation',array(
+			'model'=>$model,
+		));
+	}
+	
+	
+	public function actionTestajax()
+	{
+		echo Yii::app()->session['language'];exit;
+		$this->redirect('/');
+	}
+	/*
 	** 	Action Project: show infor for Project.
 	*/
 	public function actionProject($alias)
@@ -81,7 +322,13 @@ class SiteController extends FController
 			'project'=>$project,
 		));
 	}
-	 
+	
+	protected function performAjaxValidation($model, $attributes=null){
+        //if(isset($_POST['ajax']) && $_POST['ajax']==='booking-form'){
+			return CActiveForm::validate($model, $attributes);
+			Yii::app()->end();
+		//}
+	}
 	 
 	/**
 	 * This is the action to handle external exceptions.

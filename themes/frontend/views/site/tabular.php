@@ -25,6 +25,7 @@
 </table>
 <script>
 	$(document).ready(function(){
-        $("#myTable").tablesorter(); 
+        $("#myTable").tablesorter();
+		
     });
 </script>

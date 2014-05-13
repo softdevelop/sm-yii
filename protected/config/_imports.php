@@ -34,10 +34,16 @@ return array(
 	'application.modules.stocks.models.*', 
 	'application.modules.stocks.components.*',
 	
+	'application.modules.bookings.BookingsModule', 
+	'application.modules.bookings.models.*', 
+	'application.modules.bookings.components.*',
+	
 	'editable.*', //easy include of editable classes
 	
 	// include bootstrap
 	'bootstrap.helpers.TbHtml',
-	'bootstrap.helpers.TbArray'
+	'bootstrap.helpers.TbArray',
+	'bootstrap.behaviors.*'
+
 	
 );
