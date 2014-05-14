@@ -35,14 +35,11 @@ class LanguageController extends FController
 	{
 		if (isset($_POST['dropDown'])){
 			$language = $_POST['dropDown'];
-			//echo $language;exit;
-			//dump($language);exit;
 			$user = User::model()->findByPk(Yii::app()->user->id);
 			$user->language = (string)$language;
 			$user->save(false);
 			Yii::app()->session['language']=$language;
 		}else {
-			//dump($language);exit;
 			Yii::app()->session['language']='en';
 		}
 		$this->redirect('/language');

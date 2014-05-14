@@ -107,9 +107,6 @@ class AdminController extends BController
                 $model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save(false)) {
 
-                    //var_dump('11');exit;
-					//$profile->user_id=$model->id;
-					//$profile->save();
 				}else{
                     $errores = $model->getErrors();
                     dump($errores);exit;

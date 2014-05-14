@@ -46,12 +46,15 @@ class SiteController extends FController
 	 */
 	public function actionIndex()
 	{
-		$this->getAction();exit;
+		
 		$this->render('index',array( ));
 	}
 	
 	public function actionSortable()
 	{
+
+		//* old data*/
+		/*
 		$users = User::model()->findAll();
 		$model =  new User;
 		if($model->isNewRecord) {
@@ -95,7 +98,16 @@ class SiteController extends FController
 		$this->render('sortable',array(
 			'users'=>$users,
 			'model'=>$model,
-		));
+		));*/
+		$model=new User('searchfrontend');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['User']))
+            $model->attributes=$_GET['User'];
+
+        $this->render('sortable',array(
+            'model'=>$model,
+        ));
+		
 	}
 	/*
 	** 	Create user
@@ -122,6 +134,45 @@ class SiteController extends FController
 			throw new CHttpException(400, 'Invalid request');  
 		}
 	}
+	/*
+	** 	Update user
+	*/
+	public function actionUpdate(){
+		
+			if(Yii::app()->request->isPostRequest){
+				$id = $_POST['id'];
+				$model = User::model()->findByPk($id);
+				//dump($model);exit;
+				$model->username = $_POST['username'];
+				$model->email = $_POST['email'];
+				$model->confirmation_password = $model->password;
+				
+				if($model->validate()) {
+					$model->codepass($model->password);
+					$model->save(false);
+					
+					echo CJSON::encode(array(
+						'errors' => false,
+						'username' => $model->username,
+						'email' => $model->email
+					));
+					exit;
+				} else {
+					//echo 'error';exit;
+					$errors = array_map(function($v){ return join(', ', $v); }, $model->getErrors());
+					echo CJSON::encode(array(
+						'errors' => true,
+						'content' => $errors ,
+					));
+					exit;
+					//echo CJSON::encode(array('errors' => $errors));
+				}
+			} else {
+				throw new CHttpException(400, 'Invalid request');  
+			}
+		
+	}
+	
 	public function actionTabular()
 	{
 		

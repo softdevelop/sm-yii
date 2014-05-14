@@ -142,7 +142,7 @@ class User extends CActiveRecord
     {
         return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
             'alias'=>'user',
-            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status,user.language',
+            'select' => 'user.id, user.username,user.password, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status,user.language',
         ));
     }
 	
@@ -190,7 +190,35 @@ class User extends CActiveRecord
             'criteria'=>$criteria,
         	'pagination'=>array(
 				'pageSize'=>Yii::app()->getModule('user')->user_page_size,
-				
+			),
+        ));
+    }
+	/*
+	** Search front end
+	 */
+    public function searchfrontend()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+        $criteria=new CDbCriteria;
+        $criteria->condition = "id>1";
+        $criteria->compare('id',$this->id);
+        $criteria->compare('username',$this->username,true);
+        $criteria->compare('password',$this->password);
+        $criteria->compare('email',$this->email,true);
+        $criteria->compare('activkey',$this->activkey);
+        $criteria->compare('create_at',$this->create_at);
+        $criteria->compare('lastvisit_at',$this->lastvisit_at);
+        $criteria->compare('superuser',$this->superuser);
+        $criteria->compare('status',$this->status);
+        $criteria->compare('language',$this->language);
+
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        	'pagination'=>array(
+				//'pageSize'=>Yii::app()->getModule('user')->user_page_size,
+				'pageSize'=>2,
 			),
         ));
     }

@@ -16,6 +16,50 @@ input[type="password"] {
 	width: 150px;
 }
 </style>
+<script>
+	$(document).ready(function(){
+		$('.save-btn').on('click',function(){
+			$id = $(this).data('id');
+			$mainDiv = $(this).parent().parent().parent();
+			$mainDiv.find('.alert').remove();
+			username = $mainDiv.find('input[name="username"]').val();
+			email = $mainDiv.find('input[name="email"]').val();
+			$.ajax({
+				url : '/site/update',
+				type : 'POST',
+				data : {
+					id : $id,
+					username : username,
+					email : email
+				},
+				success : function(res){
+					msg = '';
+					rs = jQuery.parseJSON(res);
+					if(rs.errors){
+						$.each(rs.content, function(k, v) { msg += v+"<br>"; });
+						//alert(msg);
+						$mainDiv.prepend('<div class="alert alert-danger">'+msg+'</div>');
+					}else{
+						$mainDiv.find('input[name="username"]').val(rs.username);
+						$mainDiv.find('input[name="email"]').val(email);
+						$mainDiv.prepend('<div class="alert alert-info">Info for this user is updated</div>');
+					}
+				},
+				error : function(res){
+					msg = '';
+					rs = jQuery.parseJSON(res);
+					console.log(rs);
+					$.each(rs, function(k, v) { msg += v+"<br>"; });
+					
+					$mainDiv.append(msg);
+				}
+			})
+			return false;
+		})
+	});
+</script>
+
+
 <ul class="tabs">
 	<li>
 		<input type="radio" checked name="tabs" id="tab1">
@@ -41,13 +85,20 @@ input[type="password"] {
 							<td>
 								<a href="#divForm<?php echo $value->id;?>" user_id="<?php echo $value->id;?>" id="btnForm"><?php echo $value->username;?></a>
 								<div id="divForm<?php echo $value->id;?>" style="display:none">
+									
 									<form enctype="multipart/form-data" id="user-form" action="" method="post">
 										<div class="row">
-											<label for="User_username" class="required">Username <span class="required">*</span></label>		<input size="20" maxlength="20" name="User[username]" id="User_username" type="text" value="<?php echo $value->username;?>">			
+											<label for="User_username" class="required">Username <span class="required">*</span></label>		<input size="20" maxlength="20" name="username" id="User_username" type="text" value="<?php echo $value->username;?>">			
 										</div>
 
 										<div class="row">
-											<label for="User_email" class="required">E-mail <span class="required">*</span></label>		<input size="60" maxlength="128" name="User[email]" id="User_email" type="text" value="<?php echo $value->email;?>">		<div class="errorMessage" id="User_email_em_" style="display:none"></div>	
+											<label for="User_email" class="required">E-mail <span class="required">*</span></label>		<input size="60" maxlength="128" name="email" id="User_email" type="text" value="<?php echo $value->email;?>">		<div class="errorMessage" id="User_email_em_" style="display:none"></div>	
+										</div>
+										<div class="row">
+											<label for="last_vist" class="required">Last visit: <span class="required">*</span></label>		<input size="60" maxlength="128" name="last_visit" id="last_vist" type="text" value="<?php echo $value->lastvisit_at;?>">		<div class="errorMessage" id="User_email_em_" style="display:none"></div>	
+										</div>
+										<div style="text-align: center">
+											<button id="save-btn" class="btn btn-primary save-btn" data-id="<?php echo $value->id;?>" style="display: inline-block;">Save</button>
 										</div>
 									</form>
 								</div>
@@ -61,7 +112,7 @@ input[type="password"] {
 									'text'      => $value->email,
 									'url'       => $this->createUrl('/user/user/editemail'), 
 									'title'     => 'Enter an email',
-									'placement' => 'right'
+									'placement' => 'bottom'
 								));
 							//echo $value->email;?></td>
 							<td><?php echo User::itemAlias("UserStatus",$value->status);?></td>

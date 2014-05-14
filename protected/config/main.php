@@ -5,7 +5,6 @@ Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 Yii::setPathOfAlias('frontend', dirname(__FILE__).'/../../wwwroot/themes/frontend');
 Yii::setPathOfAlias('chartjs', dirname(__FILE__).'/../extensions/yii-chartjs-master');
 Yii::setPathOfAlias('editable', dirname(__FILE__).'/../extensions/x-editable');
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 require "function_alias.php";
 require "_constants.php";
 require "_helper.php";
