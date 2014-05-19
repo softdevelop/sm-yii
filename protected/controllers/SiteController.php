@@ -38,8 +38,8 @@ class SiteController extends FController
 	
 	public function actioncheck()
 	{
-		echo Yii::app()->session['leftOrright'];
-		exit;
+		$ss = User::model()->findByPk(1);
+		dump($ss->lastvisit);exit;
 	}
 	/**
 	 * This is the action to handle external exceptions.
@@ -218,8 +218,8 @@ class SiteController extends FController
 		$model =  new User;
 		if($model->isNewRecord) {
 			Yii::app()->clientScript->registerScript('new-user', '
-			$("#save-btn").show();
-			$("#save-btn").click(function() {
+			$("#save-tn").show();
+			$("#save-tn").click(function() {
 				$("#user-details .editable").editable("submit", {
 					url: "'.$this->createUrl('/site/create').'",
 					success: function(data) {

@@ -64,6 +64,9 @@ class AuthItemController extends RController
 					'assign',
 					'revoke',
 					'sortable',
+					'removeAll',
+					'removeAllUser',
+					
 				),
 				'users'=>$this->_authorizer->getSuperusers(),
 			),
@@ -342,7 +345,7 @@ class AuthItemController extends RController
 		$childSelectOptions = array(
 			'Roles' => $childSelectOptionsbuf['Operations']
 		);
-		//dump($childSelectOptions ,6,true);exit;
+		//dump($exclude,6,true);exit;
 		if( $childSelectOptions!==array() )
 		{
 			$childFormModel = new AuthChildForm();
@@ -372,7 +375,7 @@ class AuthItemController extends RController
 		{
 			$childFormModel = null;
 		}
-
+		
 		// Set the values for the form fields
 		$formModel->name = $model->name;
 		$formModel->description = $model->description;
@@ -382,8 +385,9 @@ class AuthItemController extends RController
 
 		$parentDataProvider = new RAuthItemParentDataProvider($model);
 		$childDataProvider = new RAuthItemChildDataProvider($model);
-		
+		//dump($childDataProvider,6,true);exit;
 		// Render the view
+		$nameGroup = isset($_GET['name'])===true ? urldecode($_GET['name']) : null;
 		$this->render('update', array(
 			'model'=>$model,
 			'formModel'=>$formModel,
@@ -391,6 +395,7 @@ class AuthItemController extends RController
 			'childSelectOptions'=>$childSelectOptions,
 			'parentDataProvider'=>$parentDataProvider,
 			'childDataProvider'=>$childDataProvider,
+			'nameGroup'=>$nameGroup
 		));
 	}
 
@@ -402,6 +407,12 @@ class AuthItemController extends RController
 		// We only allow deletion via POST request
 		if( Yii::app()->request->isPostRequest===true )
 		{
+			$name = isset($_GET['name'])===true ? urldecode($_GET['name']) : null;
+			$authassignment = AuthassignmentNew::model()->findAllByAttributes(array('itemname'=>$name));
+			if(!empty($authassignment)){
+				Yii::app()->user->setFlash('errordeletegroup', "Please delete all user belong to ".$name." group");
+				$this->redirect('/rights/authItem/roles');
+			}
 			$itemName = $this->getItemName();
 			
 			// Load the item and save the name for later use
@@ -455,6 +466,39 @@ class AuthItemController extends RController
 		{
 			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
 		}
+	}
+	
+	/**
+	* Removes all roles.
+	*/
+	public function actionRemoveAll($groupname)
+	{
+		
+		$groupname = $_GET['groupname'];
+		$groups = AuthitemchildNew::model()->findAllByAttributes(array('parent'=>$groupname));
+		if (!empty($groups)) {
+			foreach ($groups as $key => $value) {
+				$value->delete();
+			}
+		}
+		
+		$this->redirect('/rights/authItem/update/name/'.$groupname);
+	}
+	/**
+	* Removes all users in group.
+	*/
+	public function actionRemoveAllUser($groupname)
+	{
+		
+		$groupname = $_GET['groupname'];
+		$groups = AuthassignmentNew::model()->findAllByAttributes(array('itemname'=>$groupname));
+		if (!empty($groups)) {
+			foreach ($groups as $key => $value) {
+				$value->delete();
+			}
+		}
+		
+		$this->redirect('/rights/authItem/update/name/'.$groupname);
 	}
 
 	/**

@@ -1,6 +1,10 @@
 <?php 
 	$baseUrl = Yii::app()->baseUrl.WWWROOT_FRONTEND; 
 	$cs = Yii::app()->getClientScript();
+	//Css
+	$cs->registerCssFile($baseUrl.'/css/include/jquery.fancybox.css');
+	//Js
+	$cs->registerScriptFile($baseUrl.'/js/include/jquery.fancybox.pack.js');
 	$cs->registerScriptFile($baseUrl.'/js/include/jquery.noty.packaged.js');
 ?>
 <style>
@@ -33,8 +37,23 @@ span.runner {
 			<span class="runner" data-layout="center" data-type="information">Information <i class="icon-caret-right"></i></span>
 			<span class="runner" data-layout="center" data-type="confirm">Confirm <i class="icon-caret-right"></i></span>
 		</h6>
+		<a href="#divForm" id="btnForm">Load Pop up with form</a>
+		<div id="divForm" style="display:none">
+			<h1> Pop Up </h1>
+			<?php echo TbHtml::beginFormTb(TbHtml::FORM_LAYOUT_HORIZONTAL); ?>
+			<?php echo TbHtml::emailFieldControlGroup('email', '',
+				array('label' => 'Label', 'placeholder' => 'Just for test')); ?>
+			<?php echo TbHtml::formActions(array(
+				TbHtml::submitButton('OK', array('class'=>'ok-button','color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+				TbHtml::button('Cancel',array('class'=>'cancel-button')),
+			)); ?>
+			<?php echo TbHtml::endForm(); ?>
+		</div>
 	</div>
 </div>
+<script type="text/javascript">
+    $("#btnForm").fancybox();
+</script>
 <script>
 	/* 
  * Authors: Nedim Arabaci (http://ned.im)
@@ -90,5 +109,43 @@ $(document).ready(function () {
 		});
 		return false;
 	});
+	$('.ok-button').on('click',function(){
+		$.fancybox.close();
+		noty({
+			"animateOpen":{
+				"height":"toggle"
+			},
+			"animateClose":{
+				"height":"toggle"
+			},
+			"force": true, 
+			"closeButton":true,
+			"layout" : "top", 
+			"text": 'You have click Ok button', 
+			"type": 'success',
+			"model":true
+		});
+		return false;
+	});
+	$('.cancel-button').on('click',function(){
+		$.fancybox.close();
+		noty({
+			"animateOpen":{
+				"height":"toggle"
+			},
+			"animateClose":{
+				"height":"toggle"
+			},
+			"force": true, 
+			"closeButton":true,
+			"layout" : "top", 
+			"text": 'You have click cancel button', 
+			"type": 'error',
+			"model":true
+		});
+		return false;
+		
+	});
+	
 });
 </script>

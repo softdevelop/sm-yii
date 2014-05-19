@@ -4,7 +4,11 @@
 ); ?>
 
 <div id="roles">
-
+    <?php if(Yii::app()->user->hasFlash('errordeletegroup')):?>
+        <div class="info">
+          <h4 style="color:red;font-weight:bold;"><?php echo Yii::app()->user->getFlash('errordeletegroup'); ?></h4>
+         </div>
+    <?php endif; ?>
 	<h2><?php echo Rights::t('core', 'Group'); ?></h2>
 
 	<p>
@@ -35,13 +39,13 @@
     			'type'=>'raw',
     			'htmlOptions'=>array('class'=>'description-column'),
     		),
-    		array(
+    		/*array(
     			'name'=>'bizRule',
     			'header'=>Rights::t('core', 'Business rule'),
     			'type'=>'raw',
     			'htmlOptions'=>array('class'=>'bizrule-column'),
     			'visible'=>Rights::module()->enableBizRule===true,
-    		),
+    		),*/
     		array(
     			'name'=>'data',
     			'header'=>Rights::t('core', 'Data'),

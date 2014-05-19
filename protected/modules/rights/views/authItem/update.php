@@ -59,7 +59,8 @@
 
 				<h4><?php echo Rights::t('core', 'Add Roles'); ?></h4>
 
-				<?php $this->widget('zii.widgets.grid.CGridView', array(
+				<?php 
+				$this->widget('zii.widgets.grid.CGridView', array(
 					'dataProvider'=>$childDataProvider,
 					'template'=>'{items}',
 					'hideHeader'=>true,
@@ -90,7 +91,12 @@
 				)); ?>
 
 			</div>
-
+			<div class="addChild" style="clear:both;">
+				<a href="<?php echo Yii::app()->createUrl('/rights/authItem/removeAll/groupname/'.$nameGroup)?>">Delete all roles </a>
+			</div>
+			<div class="addChild" style="clear:both;">
+				<a href="<?php echo Yii::app()->createUrl('/rights/authItem/removeAllUser/groupname/'.$nameGroup)?>">Remove all user for this group </a>
+			</div>
 			<div class="addChild" style="clear:both;">
 
 				<h5><?php //echo Rights::t('core', 'Add Child'); ?></h5>

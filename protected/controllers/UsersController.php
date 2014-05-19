@@ -76,8 +76,16 @@ class UsersController extends CController
 	
 	private function lastViset() {
 		$lastVisit = User::model()->notsafe()->findByPk(Yii::app()->user->id);
+		// List last visit
+		$uservisit = new UserVisit;
+		$uservisit->user_id = $lastVisit->id;
+		$uservisit->last_visit = time();
+		$uservisit->last_visit=date('Y-m-d H:i:s',time());
+		$uservisit->save(false);
+
 		$lastVisit->lastvisit = time();
 		$lastVisit->save(false);
+		
 		
 	}
 }
