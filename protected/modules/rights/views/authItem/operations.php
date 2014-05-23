@@ -4,7 +4,11 @@
 ); ?>
 
 <div id="operations">
-
+    <?php if(Yii::app()->user->hasFlash('errordeletegroup')):?>
+        <div class="info">
+          <h4 style="color:red;font-weight:bold;"><?php echo Yii::app()->user->getFlash('errordeletegroup'); ?></h4>
+         </div>
+    <?php endif; ?>
 	<h2><?php echo Rights::t('core', 'Roles'); ?></h2>
 
 	<p>

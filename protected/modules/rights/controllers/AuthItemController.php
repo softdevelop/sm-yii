@@ -408,10 +408,18 @@ class AuthItemController extends RController
 		if( Yii::app()->request->isPostRequest===true )
 		{
 			$name = isset($_GET['name'])===true ? urldecode($_GET['name']) : null;
+			$rights = RightsNew::model()->findAllByAttributes(array('itemname'=>$name,'type'=>2));
 			$authassignment = AuthassignmentNew::model()->findAllByAttributes(array('itemname'=>$name));
-			if(!empty($authassignment)){
+			if((!empty($authassignment)) && (!empty($rights))) {
 				Yii::app()->user->setFlash('errordeletegroup', "Please delete all user belong to ".$name." group");
 				$this->redirect('/rights/authItem/roles');
+			}else{
+
+				$authitemchild = AuthitemchildNew::model()->findAllByAttributes(array('child'=>$name));
+				if(!empty($authitemchild)){
+					Yii::app()->user->setFlash('errordeletegroup', "Please remove ".$name." role out of all groups");
+					$this->redirect('/rights/authItem/operations');
+				}
 			}
 			$itemName = $this->getItemName();
 			

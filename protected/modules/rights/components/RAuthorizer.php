@@ -283,7 +283,7 @@ class RAuthorizer extends CApplicationComponent
 	public function getSuperusers()
 	{
 		$assignments = $this->_authManager->getAssignmentsByItemName( Rights::module()->superuserName );
-
+		
 		$userIdList = array();
 		foreach( $assignments as $userId=>$assignment )
 			$userIdList[] = $userId;
@@ -294,13 +294,14 @@ class RAuthorizer extends CApplicationComponent
 		$userClass = Rights::module()->userClass;
 		$users = CActiveRecord::model($userClass)->findAll($criteria);
 		$users = $this->attachUserBehavior($users);
-
+		
 		$superusers = array();
 		foreach( $users as $user )
 			$superusers[] = $user->name;
 
 		// Make sure that we have superusers, otherwise we would allow full access to Rights
 		// if there for some reason is not any superusers.
+		
 		if( $superusers===array() )
 			throw new CHttpException(403, Rights::t('core', 'There must be at least one superuser!'));
 

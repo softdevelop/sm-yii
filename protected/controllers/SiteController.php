@@ -181,6 +181,7 @@ class SiteController extends FController
 		$criteria->select = 't.stockname';
 		//dump($criteria);exit;
 		$stocks = Stock::model()->findAll($criteria);
+		//dump($stocks);exit;
 		$this->render('tabular',array(
 			'stocks'=>$stocks,
 		));
