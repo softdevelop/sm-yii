@@ -1,0 +1,14 @@
+{
+	"name": "Yii",
+	"description": "The Yii framework",
+	"type": "library",
+	"keywords": ["framework"],
+	"authors": [
+		{
+			"name": "Qiang Xue"
+		}
+	],
+    "require": {
+        "yiisoft/yii": "1.1.14"
+    }
+}
