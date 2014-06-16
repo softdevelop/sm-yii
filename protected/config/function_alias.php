@@ -38,8 +38,10 @@ function jlOut($obj, $dataType = 'json', $exit = true) {
 		header('Content-Encoding: gzip');
 		header('Vary: Accept-Encoding');
 		header("Content-Length: ".strlen($gzContent));
+		//var_dump($gzContent);
 		echo $gzContent;
 		@ob_end_flush();
+		//exit;
 	} else {
 		if (stripos($_SERVER['HTTP_ACCEPT_ENCODING'], "gzip") !== false) {
 			header('Content-Encoding: gzip');

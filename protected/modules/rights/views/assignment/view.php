@@ -31,13 +31,13 @@
     			'htmlOptions'=>array('class'=>'role-column'),
     			'value'=>'$data->getAssignmentsText(CAuthItem::TYPE_ROLE)',
     		),
-			array(
+			/*array(
     			'name'=>'assignments',
     			'header'=>Rights::t('core', 'Tasks'),
     			'type'=>'raw',
     			'htmlOptions'=>array('class'=>'task-column'),
     			'value'=>'$data->getAssignmentsText(CAuthItem::TYPE_TASK)',
-    		),
+    		),*/
 			array(
     			'name'=>'assignments',
     			'header'=>Rights::t('core', 'Roles'),
