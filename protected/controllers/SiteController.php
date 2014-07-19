@@ -291,7 +291,8 @@ class SiteController extends FController
 					array('content'=>json_encode($valitor))
 				);
 			}
-			jsonOut($result);
+			//jsonOut($result);
+			echo json_encode($result);
 			exit();
         }
 		// Validation for Step 2
@@ -315,7 +316,7 @@ class SiteController extends FController
 					array('content'=>json_encode($valitor))
 				);
 			}
-			jsonOut($result);
+			echo json_encode($result);
 			exit();
         }
 		
@@ -343,7 +344,7 @@ class SiteController extends FController
 					array('content'=>json_encode($valitor))
 				);
 			}
-			jsonOut($result);
+			echo json_encode($result);
 			exit();
         }
 		// clear Session

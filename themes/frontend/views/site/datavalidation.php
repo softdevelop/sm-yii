@@ -75,7 +75,7 @@
 
 		<div class="span12" style="text-align: left">
 			<button id="save-btn" class="btn btn-primary hide previouspayment" style="display: inline-block;">Previous</button>
-			<button id="save-btn" class="btn btn-primary hide finished" style="display: inline-block;">Finihed</button>
+			<button id="save-btn" class="btn btn-primary hide finished" style="display: inline-block;">Finished</button>
 			
 		</div>
 	</div>
@@ -97,10 +97,9 @@
 					days :  $('input[name="Booking[days]"]').val(),
 				},
 				success : function(res){
-					console.log(res);
+					res = jQuery.parseJSON(res);
 					if (res.error){
 						var re = '';
-						console.log(res.content);
 						msg = jQuery.parseJSON(res.content);
 						console.log(msg);
 						myobj = jQuery.parseJSON(msg);//convert to Object
@@ -138,33 +137,26 @@
 					phone :  $('input[name="Booking[phone]"]').val(),
 				},
 				success : function(res){
+					res = jQuery.parseJSON(res);
 					if (res.error){
-						//var key;
+						var re = '';
 						msg = jQuery.parseJSON(res.content);
 						myobj = jQuery.parseJSON(msg);//convert to Object
 						$.each(myobj, function( index, value ) {
 							re += value+"<br>";
 						});
-						
-						/*for(var key in Showerror) {
-							 msg += Showerror[key]+"<br>";
-						}*/
 						$("#msg").removeClass("alert-success").addClass("alert-error").html(re).show();
-						//console.log(res.content.lenth());
-						//$.each(res.content, function(k, v) { msg += v+"<br>"; });
-						console.log(msg);
 					}else{
 						msg = 'Finished Infomation Purchaser';
 						$("#msg").removeClass("alert-error").addClass("alert-success").html(msg).show();
 						hideAll();
 						$('.payment').show();
 					}
-					//alert('dd');
 				},
 				error : function(res){
 					console.log(res);
 				}
-			})
+			});
 				
 			return false;
 		});
@@ -178,6 +170,7 @@
 					credit :  $('input[name="Booking[credit]"]').val(),
 				},
 				success : function(res){
+					res = jQuery.parseJSON(res);
 					if (res.error){
 						//var key;
 						msg = jQuery.parseJSON(res.content);
@@ -203,7 +196,6 @@
 					console.log(res);
 				}
 			})
-				
 			return false;
 		});
 		

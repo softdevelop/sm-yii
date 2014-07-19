@@ -30,7 +30,6 @@
 		$('#User_username').on('change',function(){
 			userid = $('#User_username').val();
 			window.location.href="/rights/check/user/id/"+userid;
-
 		})
 	})
 
