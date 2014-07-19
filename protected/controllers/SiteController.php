@@ -12,7 +12,7 @@ class SiteController extends FController
 		if(Yii::app()->user->isGuest) {
 			$this->redirect('/users/login');
 		}
-		//Yii::app()->language = Yii::app()->session['language'];
+		Yii::app()->language = Yii::app()->session['language'];
 		Yii::import('application.modules.teams.models.Team');
 		Yii::app()->theme = 'frontend';
 		parent::init();
