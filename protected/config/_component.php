@@ -32,7 +32,8 @@
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
-				'errorAction'=>'site/error',
+				//'errorAction'=>'site/error',
+				'errorAction'=>'error',
 		),
 		'log'=>array(
 		    'class'=>'CLogRouter',
@@ -40,7 +41,7 @@
 		        array(
 		            'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
 		            // Access is restricted by default to the localhost
-		            'ipFilters'=>array('127.0.0.1','192.168.1.*'),
+		            'ipFilters'=>array('127.0.0.1','192.168.1.*','192.168.1.*', '::1'),
 		        ),
 				array(
 					//'class'=>'DBLogRoute',

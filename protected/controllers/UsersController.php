@@ -1,6 +1,7 @@
 <?php
 
-class UsersController extends CController
+//class UsersController extends CController
+class UsersController extends Controller
 {
 	public $layout='//layouts/_login';
 	/* 
