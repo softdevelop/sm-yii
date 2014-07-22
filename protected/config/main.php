@@ -1,5 +1,4 @@
 <?php
-
 Yii::setPathOfAlias('widgets', dirname(__FILE__).'/../components/widgets');
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 Yii::setPathOfAlias('frontend', dirname(__FILE__).'/../../wwwroot/themes/frontend');

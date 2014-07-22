@@ -32,7 +32,6 @@ class FController extends CController
 			$current = User::model()->findByPk(Yii::app()->user->id);
 			Yii::app()->language = $current->language;
 		}
-		
 		Yii::app()->theme = 'frontend';
 		parent::init();
 	}
