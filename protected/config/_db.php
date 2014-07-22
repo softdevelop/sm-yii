@@ -1,6 +1,6 @@
 <?php 
 	return array(
-		'connectionString' => 'mysql:host=localhost;dbname=sm',
+		'connectionString' => 'mysql:host=localhost;dbname=sm-yii',
 		'emulatePrepare' => true,
 		'username' => 'root',
 		'password' => '',

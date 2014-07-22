@@ -25,7 +25,7 @@ class UsersController extends CController
 	 */
 	public function actionLogin()
 	{
-		
+		//var_dump("expression"); exit;
 		if (Yii::app()->user->isGuest) {
 			$model=new UserLogin;
 			if(isset($_POST['UserLogin']))
