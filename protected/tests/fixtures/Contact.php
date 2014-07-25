@@ -1,0 +1,40 @@
+<?php
+
+return array(
+	'sample1'=>array(
+		'title' => 'Test Contact Title 1',
+		'email' => 'email1@gmail.com',
+		'name' => 'Test Contact Name 1',
+		'content' => 'Test Contact Content 1',
+		'phone' => 'Test Contact Phone 1',
+		'address' => 'Test Contact Address 1',
+		'city' => 'Test Contact City 1',
+		'country' => 'Test Contact Country 1',
+		'created' => 'Created 1',
+		'status' => 1,
+	),
+	'sample2'=>array(
+		'title' => 'Test Contact Title 2',
+		'email' => 'email2@gmail.com',
+		'name' => 'Test Contact Name 2',
+		'content' => 'Test Contact Content 2',
+		'phone' => 'Test Contact Phone 2',
+		'address' => 'Test Contact Address 2',
+		'city' => 'Test Contact City 2',
+		'country' => 'Test Contact Country 2',
+		'created' => 'Created 2',
+		'status' => 2,
+	),
+	'sample3'=>array(
+		'title' => 'Test Contact Title 3',
+		'email' => 'email3@gmail.com',
+		'name' => 'Test Contact Name 3',
+		'content' => 'Test Contact Content 3',
+		'phone' => 'Test Contact Phone 3',
+		'address' => 'Test Contact Address 3',
+		'city' => 'Test Contact City 3',
+		'country' => 'Test Contact Country 3',
+		'created' => 'Created 3',
+		'status' => 3,
+	),
+);

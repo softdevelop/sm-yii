@@ -1,0 +1,40 @@
+<?php
+
+return array(
+	'sample1'=>array(
+		'title'=>'Test News title 1',
+		'alias'=>'Test News alias 1',
+		'image'=>'Test News image 1',
+		'description'=>'Test News description 1',
+		'content'=>'Test News content 1',
+		'priority'=>1,
+		'is_published'=>1,
+		'create_time'=>1404528061,
+		'update_time'=>1404528061,
+		'news_time'=>1404528061,
+	),
+	'sample2'=>array(
+		'title'=>'Test News title 2',
+		'alias'=>'Test News alias 2',
+		'image'=>'Test News image 2',
+		'description'=>'Test News description 2',
+		'content'=>'Test News content 2',
+		'priority'=>2,
+		'is_published'=>2,
+		'create_time'=>1404528062,
+		'update_time'=>1404528062,
+		'news_time'=>1404528062,
+	),
+	'sample3'=>array(
+		'title'=>'Test News title 3',
+		'alias'=>'Test News alias 3',
+		'image'=>'Test News image 3',
+		'description'=>'Test News description 3',
+		'content'=>'Test News content 3',
+		'priority'=>3,
+		'is_published'=>3,
+		'create_time'=>1404538063,
+		'update_time'=>1404538063,
+		'news_time'=>1404538063,
+	),
+);
