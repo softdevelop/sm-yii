@@ -2,6 +2,10 @@
 
 class SiteTest extends WebTestCase
 {
+	public $fixtures=array(
+		'stock'=>'Stock',
+		'user'=>'User',
+	);
 	public function testContact()
 	{/*
 		$this->open('site/contact');
@@ -75,6 +79,16 @@ class SiteTest extends WebTestCase
 	{
 		$fixtures = array('user'=>'User');
 		$this->open('site/sortable');
+		$this->assertTextPresent($this->user['sample1']['username']);
+		$this->assertTextPresent($this->user['sample1']['email']);
+		$this->assertTextPresent($this->user['sample1']['activkey']);
+		$this->assertTextPresent($this->user['sample1']['status']);
+		
+	}
+	public function testParentchild()
+	{
+		$fixtures = array('user'=>'User');
+		$this->open('site/parentchild');
 		$this->assertTextPresent($this->user['sample1']['username']);
 		$this->assertTextPresent($this->user['sample1']['email']);
 		$this->assertTextPresent($this->user['sample1']['activkey']);
