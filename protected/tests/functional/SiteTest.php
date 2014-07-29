@@ -2,11 +2,9 @@
 
 class SiteTest extends WebTestCase
 {
-	public $fixtures=array(
-		'stock'=>'Stock',
-		'user'=>'User',
-		'project'=>'Project',
-	);
+	// public $fixtures=array(
+	// 	'users'=>'User',
+	// );
 	public function testContact()
 	{/*
 		$this->open('site/contact');
@@ -43,29 +41,36 @@ class SiteTest extends WebTestCase
 		$this->clickAndWait('link=Logout');
 		$this->assertTextPresent('Login');*/
 	}
+	
 	public function testIndex()
 	{
 		$this->open('/');
-		 $this->assertTextPresent($this->project['sample1']['title']);
-        $this->assertTextPresent('Welcome');
-
-        $this->assertTextPresent($this->project['sample1']['short_description']);
-        $this->assertTextPresent('A main page test');
 	}
 	// public function test
 	public function testCreate()
 	{
 
 		$this->open('site/create');
-		$this->assertTextPresent($this->project['sample1']['title']);
+		$this->assertTextPresent('username1');
+		$this->assertTextPresent('');
+		$this->assertTextPresent('email1@gmail.com');
+		$this->assertTextPresent('activkey1');
+		$this->assertTextPresent('1404538063');
+		$this->assertTextPresent('1404538063');
+		$this->assertTextPresent('1');
+		$this->assertTextPresent('1');
+		$this->assertTextPresent('1404538063');
+		$this->assertTextPresent('1404538063');
 
 	}
+	
 	public function testTabular()
 	{
-		$fixtures = array('stock'=>'Stock');
+		
 		$this->open('site/tabular');
-		$this->assertTextPresent($this->stock['sample1']['stockname']);
-		$this->assertTextPresent($this->stock['sample1']['price']);
+		$this->assertTextPresent('Test Stock stockname 1');
+		$this->assertTextPresent('Test Stock price 1');
+		$this->assertTextPresent('1404538063');
 		
 	}
 	public function testPopup()
@@ -77,22 +82,34 @@ class SiteTest extends WebTestCase
 	}
 	public function testSortable()
 	{
-		$fixtures = array('user'=>'User');
+		
 		$this->open('site/sortable');
-		$this->assertTextPresent($this->user['sample1']['username']);
-		$this->assertTextPresent($this->user['sample1']['email']);
-		$this->assertTextPresent($this->user['sample1']['activkey']);
-		$this->assertTextPresent($this->user['sample1']['status']);
+		$this->assertTextPresent('username1');
+		$this->assertTextPresent('');
+		$this->assertTextPresent('email1@gmail.com');
+		$this->assertTextPresent('activkey1');
+		$this->assertTextPresent('1404538063');
+		$this->assertTextPresent('1404538063');
+		$this->assertTextPresent('1');
+		$this->assertTextPresent('1');
+		$this->assertTextPresent('1404538063');
+		$this->assertTextPresent('1404538063');
 		
 	}
 	public function testParentchild()
 	{
-		$fixtures = array('user'=>'User');
-		$this->open('site/parentchild');
-		$this->assertTextPresent($this->user['sample1']['username']);
-		$this->assertTextPresent($this->user['sample1']['email']);
-		$this->assertTextPresent($this->user['sample1']['activkey']);
-		$this->assertTextPresent($this->user['sample1']['status']);
 		
+		$this->open('site/parentchild');
+		$this->assertTextPresent('username1');
+		$this->assertTextPresent('');
+		$this->assertTextPresent('email1@gmail.com');
+		$this->assertTextPresent('activkey1');
+		$this->assertTextPresent('1404538063');
+		$this->assertTextPresent('1404538063');
+		$this->assertTextPresent('1');
+		$this->assertTextPresent('1');
+		$this->assertTextPresent('1404538063');
+		$this->assertTextPresent('1404538063');
 	}
+	
 }

@@ -1,5 +1,5 @@
 <?php
-class LoginTest extends WebCaseTest
+class LoginTest extends WebTestCase
 {
 	public function testLoginLogout()
 	{

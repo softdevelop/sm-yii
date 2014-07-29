@@ -1,0 +1,40 @@
+<?php
+
+return array(
+	'sample1'=>array(
+		'username'=>'username1',
+		'password'=>'',
+		'email'=>'email1@gmail.com',
+		'activkey'=>'activkey1',
+		'createtime'=>1404538063,
+		'lastvisit'=>1404538063,
+		'superuser'=>1,
+		'status'=>1,
+		'create_at'=>1404538063,
+		'lastvisit_at'=>1404538063,
+	),
+	'sample2'=>array(
+		'username'=>'username2',
+		'password'=>'',
+		'email'=>'email2@gmail.com',
+		'activkey'=>'activkey2',
+		'createtime'=>1404538063,
+		'lastvisit'=>1404538063,
+		'superuser'=>2,
+		'status'=>2,
+		'create_at'=>1404538063,
+		'lastvisit_at'=>1404538063,
+	),
+	'sample3'=>array(
+		'username'=>'username3',
+		'password'=>'',
+		'email'=>'email3@gmail.com',
+		'activkey'=>'activkey3',
+		'createtime'=>1404538063,
+		'lastvisit'=>1404538063,
+		'superuser'=>3,
+		'status'=>3,
+		'create_at'=>1404538063,
+		'lastvisit_at'=>1404538063,
+	),
+);

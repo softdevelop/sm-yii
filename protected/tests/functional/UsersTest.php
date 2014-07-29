@@ -1,6 +1,6 @@
 <?php
 
-class SiteTest extends WebTestCase
+class UsersTest extends WebTestCase
 {
 	public function testContact()
 	{/*
@@ -14,7 +14,7 @@ class SiteTest extends WebTestCase
 		$this->clickAndWait("//input[@value='Submit']");
 		$this->assertTextPresent('Body cannot be blank.');*/
 	}
-
+	/*
 	public function testLoginLogout()
 	{
 		$this->open('');
@@ -38,8 +38,5 @@ class SiteTest extends WebTestCase
 		$this->clickAndWait('link=Logout');
 		$this->assertTextPresent('Login');
 	}
-	public function test()
-	{
-		
-	}
+	*/
 }
