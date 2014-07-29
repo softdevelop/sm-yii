@@ -5,6 +5,7 @@ class SiteTest extends WebTestCase
 	public $fixtures=array(
 		'stock'=>'Stock',
 		'user'=>'User',
+		'project'=>'Project',
 	);
 	public function testContact()
 	{/*
@@ -42,7 +43,6 @@ class SiteTest extends WebTestCase
 		$this->clickAndWait('link=Logout');
 		$this->assertTextPresent('Login');*/
 	}
-	public $fixtures = array('project'=>'Project');
 	public function testIndex()
 	{
 		$this->open('/');
