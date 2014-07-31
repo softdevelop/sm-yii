@@ -1,9 +1,9 @@
 <?php
 class LoginTest extends WebTestCase
 {
-	public function testLoginLogout()
+	public function testLogin()
 	{
-		$this->open('');
+		
 		// ensure the user is logged out
 		if($this->isTextPresent('Logout'))
 			$this->clickAndWait('link=Logout');
@@ -19,9 +19,14 @@ class LoginTest extends WebTestCase
 		$this->assertTextNotPresent('Password cannot be blank.');
 		$this->assertTextPresent('Logout');
 
+		
+	}
+	public function testLogout()
+	{
+		$this->open('');
 		// test logout process
 		$this->assertTextNotPresent('Login');
 		$this->clickAndWait('link=Logout');
 		$this->assertTextPresent('Login');
-	}
+	} 
 }

@@ -51,10 +51,10 @@ class SiteTest extends WebTestCase
 	{
 
 		$this->open('site/create');
-		$this->assertTextPresent('username1');
+		$this->assertTextNotPresent('username1');
 		$this->assertTextPresent('');
-		$this->assertTextPresent('email1@gmail.com');
-		$this->assertTextPresent('activkey1');
+		$this->assertTextNotPresent('email1@gmail.com');
+		$this->assertText('activkey1');
 		$this->assertTextPresent('1404538063');
 		$this->assertTextPresent('1404538063');
 		$this->assertTextPresent('1');
@@ -84,9 +84,9 @@ class SiteTest extends WebTestCase
 	{
 		
 		$this->open('site/sortable');
-		$this->assertTextPresent('username1');
+		$this->assertTextNotPresent('username1');
 		$this->assertTextPresent('');
-		$this->assertTextPresent('email1@gmail.com');
+		$this->assertTextNotPresent('email1@gmail.com');
 		$this->assertTextPresent('activkey1');
 		$this->assertTextPresent('1404538063');
 		$this->assertTextPresent('1404538063');
@@ -100,9 +100,9 @@ class SiteTest extends WebTestCase
 	{
 		
 		$this->open('site/parentchild');
-		$this->assertTextPresent('username1');
+		$this->assertTextNotPresent('username1');
 		$this->assertTextPresent('');
-		$this->assertTextPresent('email1@gmail.com');
+		$this->assertTextNotPresent('email1@gmail.com');
 		$this->assertTextPresent('activkey1');
 		$this->assertTextPresent('1404538063');
 		$this->assertTextPresent('1404538063');
